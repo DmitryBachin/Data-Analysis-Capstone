@@ -55,6 +55,8 @@ data_with_damage = data[data['damage_int'] > 0]
 print('The sample volume is %i' % len(data_with_damage))
 print('')
 # TODO: counting mean and start deviation for damage property
+# TODO: break on functions
+# TODO: make a plan
 
 # checking percantege and graph for explanatory variables (all of them are categorical)
 for variable in variables:
