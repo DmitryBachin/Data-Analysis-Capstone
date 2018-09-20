@@ -60,7 +60,8 @@ def month_num(row):
 
 def modify_data_set(data_set, added_variables):
     for added_variable in added_variables:
-        data_set[added_variable] = data_set.apply(eval(added_variable.lower()), axis=1)  # adding damage property column in int format
+        data_set[added_variable] = data_set.apply(eval(added_variable.lower()),
+                                                  axis=1)  # adding damage property column in int format
     return data_set
 
 
