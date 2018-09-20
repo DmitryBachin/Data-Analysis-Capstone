@@ -77,4 +77,4 @@ def primary_data_management(putative_predictors):
 
 
 if __name__ == "__main__":
-    data = primary_data_management(['event_type', 'month_num', 'state'])
+    pass
