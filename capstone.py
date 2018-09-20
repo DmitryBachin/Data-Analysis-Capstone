@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # making a subset where we consider only wheather events for which damage is evaluated and bigger than zero
     data_with_damage = data[data['damage_int'] > 0]
 
-    output_distribution(data_with_damage, variables)
+    output_distribution(data_with_damage, variables)  # showing the distribution in textual format
     # TODO: counting mean and start deviation for damage property,
 
     # TODO: break on functions,
