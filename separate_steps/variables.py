@@ -1,11 +1,12 @@
-PUTATIVE_PREDICTORS = ['event_type', 'month_num', 'state']  # the first set of putative predictors
+PUTATIVE_PREDICTORS = ['event_type', 'month_name', 'state']  # the first set of putative predictors
+VARIABLES_TO_MODIFY = ["damage_property", "month_name"]
 
 
-def variable_names_to_uppercase(used_variables):
-    # the variables in the code book are written in lowercase, but actually they are in uppper
-    # so need a little conversion
-    return list(map(str.upper, used_variables))
-
+# the functions are written in case if the variables name will be needed to modify somehow
 
 def retrieve_putative_predictors():
-    return variable_names_to_uppercase(PUTATIVE_PREDICTORS[:])
+    return PUTATIVE_PREDICTORS[:]
+
+
+def retrieve_variables_to_modify():
+    return VARIABLES_TO_MODIFY[:]

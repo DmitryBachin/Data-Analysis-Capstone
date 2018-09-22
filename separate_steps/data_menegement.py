@@ -1,5 +1,7 @@
 import numpy
 import pandas
+from variables import retrieve_variables_to_modify
+
 
 def all_kind_of_value(data_set, variable):
     kinds = []
@@ -9,8 +11,8 @@ def all_kind_of_value(data_set, variable):
     return kinds
 
 
-def damage_int(row):  # creating the variable damage in int format to avoid 10K 12M 2B etc
-    element = row['DAMAGE_PROPERTY']
+def damage_property(row):  # creating the variable damage in int format to avoid 10K 12M 2B etc
+    element = row['damage_property']
     multiplier = {
         'K': 10 ** 3,  # for the format like 3.6K
         'M': 10 ** 6,  # for the format like 15M
@@ -32,8 +34,8 @@ def damage_int(row):  # creating the variable damage in int format to avoid 10K 
         return None
 
 
-def month_num(row):
-    element = row['MONTH_NAME']
+def month_name(row):
+    element = row['month_name']
     month_dict = {
         "April": "04.",
         "August": "08.",
@@ -51,24 +53,27 @@ def month_num(row):
     return month_dict.get(element, '') + element
 
 
-def modify_data_set(data_set, added_variables):
-    for added_variable in added_variables:
-        data_set[added_variable] = data_set.apply(eval(added_variable.lower()),
-                                                  axis=1)  # adding damage property column in int format
+def modify_data_set(data_set, variables_to_modify):
+    for variable in variables_to_modify:
+        # modify the variables
+        data_set[variable] = data_set.apply(eval(variable), axis=1)
     return data_set
 
 
 def primary_data_management(putative_predictors):
     try:
-        data = pandas.read_csv('../data_related/storm_event_data.csv', low_memory=False)  # taking data from the file
+        # taking the data from the file
+        data_set = pandas.read_csv('../data_related/storm_event_data.csv', low_memory=False)
     except FileNotFoundError:
-        data = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)  # taking data from the file
-    new_variables = ("damage_int", "month_num".upper())
+        # there is two probable locations of the file, so doesn't make sense to write too many lines about it
+        data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
+    data_set.columns = map(str.lower, data_set.columns)
+    modifiable_variables = retrieve_variables_to_modify()
 
-    data = modify_data_set(data, new_variables)  # performing necessary modifications for the data set
+    data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
-    # making a subset where we consider only wheather events for which damage is evaluated and bigger than zero
-    data_with_damage = data[data['damage_int'] > 0]
+    # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
+    data_with_damage = data_set[data_set['damage_property'] > 0].copy()
     return data_with_damage
 
 
