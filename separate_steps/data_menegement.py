@@ -1,6 +1,6 @@
 import numpy
 import pandas
-from variables import retrieve_variables_to_modify
+from variables import *
 
 
 def all_kind_of_value(data_set, variable):
@@ -74,8 +74,12 @@ def primary_data_management(putative_predictors):
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
     data_with_damage = data_set[data_set['damage_property'] > 0].copy()
+    # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
     return data_with_damage
 
 
 if __name__ == "__main__":
-    pass
+    data = primary_data_management(retrieve_putative_predictors())
+    data["cheap"] = data.apply(lambda row: row['damage_property'] > 10000, axis=1)
+    print(pandas.crosstab(data["month_name"],data["cheap"]))
+    # print(data[].head(25))
