@@ -1,13 +1,6 @@
 import numpy
 import pandas
 
-
-def variable_names_to_uppercase(used_variables):
-    # the variables in the code book are written in lowercase, but actually they are in uppper
-    # so need a little conversion
-    return list(map(str.upper, used_variables))
-
-
 def all_kind_of_value(data_set, variable):
     kinds = []
     for i in data_set[variable]:
@@ -66,8 +59,10 @@ def modify_data_set(data_set, added_variables):
 
 
 def primary_data_management(putative_predictors):
-    data = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)  # taking data from the file
-
+    try:
+        data = pandas.read_csv('../data_related/storm_event_data.csv', low_memory=False)  # taking data from the file
+    except FileNotFoundError:
+        data = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)  # taking data from the file
     new_variables = ("damage_int", "month_num".upper())
 
     data = modify_data_set(data, new_variables)  # performing necessary modifications for the data set
