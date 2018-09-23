@@ -53,6 +53,17 @@ def month_name(row):
     return month_dict.get(element, '') + element
 
 
+def restrictions_to_sample(data_set, variable):
+    q1 = data_set[variable].quantile(0.25)
+    q3 = data_set[variable].quantile(0.75)
+    minimum = q1 - 1.5 * abs(q3 - q1)
+    maximum = q3 + 1.5 * abs(q3 - q1)
+    min_value = min(data_set[variable])
+    max_value = max(data_set[variable])
+    if minimum < min_value: minimum = min_value
+    if maximum > max_value: maximum = max_value
+    return minimum, maximum
+
 def modify_data_set(data_set, variables_to_modify):
     for variable in variables_to_modify:
         # modify the variables
@@ -74,12 +85,13 @@ def primary_data_management(putative_predictors):
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
     data_with_damage = data_set[data_set['damage_property'] > 0].copy()
+    # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
+    # data_with_damage = data_set[
+    #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
     # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
     return data_with_damage
 
 
 if __name__ == "__main__":
     data = primary_data_management(retrieve_putative_predictors())
-    data["cheap"] = data.apply(lambda row: row['damage_property'] > 10000, axis=1)
-    print(pandas.crosstab(data["month_name"],data["cheap"]))
-    # print(data[].head(25))
+    # print(data["damage_property"].head(25))
