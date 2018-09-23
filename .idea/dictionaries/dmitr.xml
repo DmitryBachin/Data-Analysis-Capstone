@@ -1,9 +1,12 @@
 <component name="ProjectDictionaryState">
   <dictionary name="dmitr">
     <words>
+      <w>anova</w>
       <w>bivariate</w>
       <w>matplotlib</w>
       <w>seaborn</w>
+      <w>statsmodels</w>
+      <w>tukey</w>
     </words>
   </dictionary>
 </component>

@@ -78,13 +78,15 @@ def primary_data_management(putative_predictors):
     except FileNotFoundError:
         # there is two probable locations of the file, so doesn't make sense to write too many lines about it
         data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
+    pandas.set_option('display.max_columns', None)
+    pandas.set_option('display.max_rows', None)
     data_set.columns = map(str.lower, data_set.columns)
     modifiable_variables = retrieve_variables_to_modify()
 
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-    data_with_damage = data_set[data_set['damage_property'] > 0].copy()
+    data_with_damage = data_set[(data_set['damage_property'] > 0) & (data_set['damage_property'] < 10 ** 9)].copy()
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
