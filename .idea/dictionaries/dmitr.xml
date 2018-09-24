@@ -3,6 +3,7 @@
     <words>
       <w>anova</w>
       <w>bivariate</w>
+      <w>dateutil</w>
       <w>matplotlib</w>
       <w>seaborn</w>
       <w>statsmodels</w>

@@ -1,5 +1,5 @@
 PUTATIVE_PREDICTORS = ['event_type', 'month_name', 'state']  # the first set of putative predictors
-VARIABLES_TO_MODIFY = ["damage_property", "month_name"]
+VARIABLES_TO_MODIFY = ["damage_property", "month_name", "short_event"]
 RESPONSE_VARIABLES = ["damage_property"]
 
 

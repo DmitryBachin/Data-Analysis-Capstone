@@ -1,7 +1,7 @@
 import numpy
 import pandas
 from variables import *
-
+from datetime import datetime, timedelta
 
 def all_kind_of_value(data_set, variable):
     kinds = []
@@ -33,6 +33,10 @@ def damage_property(row):  # creating the variable damage in int format to avoid
         # if the value is not str, it means that damage was not evaluated properly and cannot be considered
         return None
 
+def short_event(row):
+    begin = datetime.strptime(row["begin_date_time"], "%d%b%y:%H:%M:%S")
+    end = datetime.strptime(row["end_date_time"], "%d%b%y:%H:%M:%S")
+    return (end - begin) < timedelta(1)
 
 def month_name(row):
     element = row['month_name']
@@ -74,10 +78,10 @@ def modify_data_set(data_set, variables_to_modify):
 def primary_data_management(putative_predictors):
     try:
         # taking the data from the file
-        data_set = pandas.read_csv('../data_related/storm_event_data.csv', low_memory=False)
+        data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
     except FileNotFoundError:
         # there is two probable locations of the file, so doesn't make sense to write too many lines about it
-        data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
+        data_set = pandas.read_csv('../data_related/storm_event_data.csv', low_memory=False)
     pandas.set_option('display.max_columns', None)
     pandas.set_option('display.max_rows', None)
     data_set.columns = map(str.lower, data_set.columns)
@@ -86,7 +90,7 @@ def primary_data_management(putative_predictors):
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-    data_with_damage = data_set[(data_set['damage_property'] >= 10 ** 6) & (data_set['damage_property'] < 10 ** 7)].copy()
+    data_with_damage = data_set[(data_set['damage_property'] > 1 * 10**5) & (data_set['damage_property'] < 5 * 10**14) & (data_set['short_event'] == True)].copy()
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
@@ -96,4 +100,5 @@ def primary_data_management(putative_predictors):
 
 if __name__ == "__main__":
     data = primary_data_management(retrieve_putative_predictors())
-    print(data["damage_property"].head(5))
+    print(len(data))
+    print(data["damage_property"].describe())
