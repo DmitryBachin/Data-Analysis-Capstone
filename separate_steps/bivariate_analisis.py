@@ -40,7 +40,7 @@ def post_hoc_true(tukey_result):
     df = pd.DataFrame(data=tukey_result._results_table.data[1:],  # creating a data frame with the results
                       columns=tukey_result._results_table.data[0])
     results = df[df["reject"] == True]  # throwing away the results which are not successful
-    return results
+    return results[["group1", "group2", "meandiff"]]
 
 
 def bivariate_analysis(data_set, explanatory_variables, response_variables):
@@ -52,6 +52,7 @@ def bivariate_analysis(data_set, explanatory_variables, response_variables):
             if model_fit.f_pvalue < 0.05:
                 post_hoc_test = post_hoc(data_set, e_var, r_var)
                 print(post_hoc_true(post_hoc_test))
+
 
 if __name__ == "__main__":
     predictors = retrieve_putative_predictors()

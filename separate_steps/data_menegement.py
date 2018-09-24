@@ -86,7 +86,7 @@ def primary_data_management(putative_predictors):
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-    data_with_damage = data_set[(data_set['damage_property'] > 0) & (data_set['damage_property'] < 10 ** 9)].copy()
+    data_with_damage = data_set[(data_set['damage_property'] >= 10 ** 6) & (data_set['damage_property'] < 10 ** 7)].copy()
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
@@ -96,4 +96,4 @@ def primary_data_management(putative_predictors):
 
 if __name__ == "__main__":
     data = primary_data_management(retrieve_putative_predictors())
-    # print(data["damage_property"].head(25))
+    print(data["damage_property"].head(5))
