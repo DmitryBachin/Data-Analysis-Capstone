@@ -7,25 +7,21 @@ import statsmodels.stats.multicomp as multi
 import pandas as pd
 
 
-def bar_chart(explanatory_variables, response_variables, data_set):
-    for r_var in response_variables:
-        for e_var in explanatory_variables:
-            seaborn.factorplot(x=e_var, y=r_var, data=data_set, kind="bar", ci=None)
-            plt.xlabel(e_var)
-            plt.ylabel(r_var)
-            plt.show()
+def bar_chart(e_var, r_var, data_set):
+    seaborn.factorplot(x=e_var, y=r_var, data=data_set, kind="bar", ci=None)
+    plt.xlabel(e_var)
+    plt.ylabel(r_var)
+    plt.show()
 
 
-def scatter_plot(explanatory_variables, response_variables, data_set):
-    for r_var in response_variables:
-        for e_var in explanatory_variables:
-            seaborn.regplot(x=e_var, y=r_var, data=data_set)
-            plt.xlabel(e_var)
-            plt.ylabel(r_var)
-            plt.show()
+def scatter_plot(e_var, r_var, data_set):
+    seaborn.regplot(x=e_var, y=r_var, data=data_set)
+    plt.xlabel(e_var)
+    plt.ylabel(r_var)
+    plt.show()
 
 
-def analysis_of_variance(data_set, e_var, r_var):
+def analysis_of_variance(e_var, r_var, data_set):
     model = smf.ols(formula="%s~C(%s)" % (r_var, e_var), data=data_set)
     return model.fit()
 
@@ -36,7 +32,7 @@ def post_hoc(data_set, e_var, r_var):
 
 
 def post_hoc_true(tukey_result):
-    # creating a dataframe with the data of post hoc test where null hypothesis is rejected
+    # creating a data frame with the data of post hoc test where the null hypothesis is rejected
     df = pd.DataFrame(data=tukey_result._results_table.data[1:],  # creating a data frame with the results
                       columns=tukey_result._results_table.data[0])
     results = df[df["reject"] == True]  # throwing away the results which are not successful
@@ -46,12 +42,14 @@ def post_hoc_true(tukey_result):
 def bivariate_analysis(data_set, explanatory_variables, response_variables):
     for r_var in response_variables:
         for e_var in explanatory_variables:
-            model_fit = analysis_of_variance(data_set, e_var, r_var)
+            bar_chart(e_var, r_var, data_set)
+            model_fit = analysis_of_variance(e_var, r_var, data_set)
             summary = model_fit.summary()
             print(summary)
             if model_fit.f_pvalue < 0.05:
                 post_hoc_test = post_hoc(data_set, e_var, r_var)
-                print(post_hoc_true(post_hoc_test))
+                post_hoc_rejected =post_hoc_true(post_hoc_test)
+                print(post_hoc_rejected)
 
 
 if __name__ == "__main__":

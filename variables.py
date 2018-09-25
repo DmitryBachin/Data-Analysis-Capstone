@@ -1,6 +1,6 @@
 PUTATIVE_PREDICTORS = ['event_type', 'month_name', 'state']  # the first set of putative predictors
-VARIABLES_TO_MODIFY = ["damage_property", "month_name", "short_event"]
-RESPONSE_VARIABLES = ["damage_property"]
+VARIABLES_TO_MODIFY = ["damage_property", "month_name", "short_event", "damage_property_lg"]
+RESPONSE_VARIABLES = ["damage_property_lg"]
 
 
 # the functions are written in case if the variables name will be needed to modify somehow

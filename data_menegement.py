@@ -2,6 +2,8 @@ import numpy
 import pandas
 from variables import *
 from datetime import datetime, timedelta
+from math import log
+
 
 def all_kind_of_value(data_set, variable):
     kinds = []
@@ -33,10 +35,22 @@ def damage_property(row):  # creating the variable damage in int format to avoid
         # if the value is not str, it means that damage was not evaluated properly and cannot be considered
         return None
 
+
+def damage_property_lg(row):
+    element = row["damage_property"]
+    if element == 0:
+        return 0
+    elif element == numpy.nan or element is None:
+        return None
+    else:
+        return log(element, 10)
+
+
 def short_event(row):
     begin = datetime.strptime(row["begin_date_time"], "%d%b%y:%H:%M:%S")
     end = datetime.strptime(row["end_date_time"], "%d%b%y:%H:%M:%S")
     return (end - begin) < timedelta(1)
+
 
 def month_name(row):
     element = row['month_name']
@@ -68,6 +82,7 @@ def restrictions_to_sample(data_set, variable):
     if maximum > max_value: maximum = max_value
     return minimum, maximum
 
+
 def modify_data_set(data_set, variables_to_modify):
     for variable in variables_to_modify:
         # modify the variables
@@ -90,7 +105,9 @@ def primary_data_management(putative_predictors):
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-    data_with_damage = data_set[(data_set['damage_property'] > 1 * 10**5) & (data_set['damage_property'] < 5 * 10**14) & (data_set['short_event'] == True)].copy()
+    data_with_damage = data_set[
+        (data_set['damage_property'] > 0) & (data_set['damage_property'] < 5 * 10 ** 14) & (
+        data_set['short_event'] == True)].copy()
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
