@@ -90,7 +90,7 @@ def modify_data_set(data_set, variables_to_modify):
     return data_set
 
 
-def primary_data_management(putative_predictors):
+def primary_data_management(putative_predictors, response_variables):
     try:
         # taking the data from the file
         data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
@@ -112,10 +112,10 @@ def primary_data_management(putative_predictors):
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
     # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
-    return data_with_damage
+    return data_with_damage[putative_predictors+response_variables]
 
 
 if __name__ == "__main__":
-    data = primary_data_management(retrieve_putative_predictors())
-    print(len(data))
-    print(data["damage_property"].describe())
+    response = retrieve_response_variables()
+    explanatory = retrieve_putative_predictors()
+    data = primary_data_management(explanatory, response)
