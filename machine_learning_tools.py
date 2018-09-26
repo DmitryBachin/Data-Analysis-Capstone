@@ -8,7 +8,7 @@ import sklearn.metrics as sklm
 from variables import *
 from data_menegement import primary_data_management
 from sklearn.model_selection import train_test_split
-
+import sklearn
 
 def retrieve_clean_data(uncleaned_data, variables=None):
     if variables:
@@ -19,17 +19,25 @@ def retrieve_clean_data(uncleaned_data, variables=None):
         return uncleaned_data.dropna()
 
 
-def decision_tree(data_sub_set, r_var, explanatory_variables):
-    pass
+def decision_tree(pred_train, pred_test, tar_train, tar_test):
+    classifier = DecisionTreeClassifier()
+    classifier = classifier.fit(pred_train, tar_train)
+    predictions = classifier.predict(pred_test)
+    result = sklearn.metrics.confusion_matrix(tar_test, predictions)
+    print(result)
+
 
 
 def machine_learning_general(data_sub_set, targets, predictors):
     data_sub_set = retrieve_clean_data(data_sub_set, targets+predictors)
     for target in targets:
-        groups = pred_train, pred_test, tar_train, tar_test = train_test_split(data_sub_set[predictors],
+        pred_train, pred_test, tar_train, tar_test = train_test_split(data_sub_set[predictors],
                                                                                data_sub_set[target],
                                                                                test_size=.3)
-        decision_tree(data_sub_set, target, predictors)
+        print(f"The size of the training set is: {pred_train.shape[0]}")
+        print(f"The size of the test set is: {pred_test.shape[0]}")
+
+        decision_tree(pred_train, pred_test, tar_train, tar_test)
 
 
 if __name__ == "__main__":

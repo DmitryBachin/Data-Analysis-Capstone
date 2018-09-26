@@ -5,6 +5,7 @@
       <w>bivariate</w>
       <w>dateutil</w>
       <w>matplotlib</w>
+      <w>pred</w>
       <w>scikit</w>
       <w>seaborn</w>
       <w>statsmodels</w>
