@@ -5,14 +5,6 @@ from datetime import datetime, timedelta
 from math import log
 
 
-def all_kind_of_value(data_set, variable):
-    kinds = []
-    for i in data_set[variable]:
-        if i not in kinds:
-            kinds.append(i)
-    return kinds
-
-
 def damage_property(row):  # creating the variable damage in int format to avoid 10K 12M 2B etc
     element = row['damage_property']
     multiplier = {
@@ -71,16 +63,28 @@ def month_name(row):
     return month_dict.get(element, '') + element
 
 
-def restrictions_to_sample(data_set, variable):
-    q1 = data_set[variable].quantile(0.25)
-    q3 = data_set[variable].quantile(0.75)
-    minimum = q1 - 1.5 * abs(q3 - q1)
-    maximum = q3 + 1.5 * abs(q3 - q1)
-    min_value = min(data_set[variable])
-    max_value = max(data_set[variable])
-    if minimum < min_value: minimum = min_value
-    if maximum > max_value: maximum = max_value
-    return minimum, maximum
+def month_name_num(row):
+    element = row['month_name']
+    month_dict = {
+        "April": 4,
+        "August": 8,
+        "December": 12,
+        "February": 2,
+        "January": 1,
+        "July": 7,
+        "June": 6,
+        "March": 3,
+        "May": 5,
+        "November": 11,
+        "October": 10,
+        "September": 9
+    }
+    return month_dict.get(element, 0)
+
+
+def cz_type_num(row):
+    element = row["cz_type"]
+    return {'C': 0, 'Z': 1, 'M': 2}.get(element)
 
 
 def modify_data_set(data_set, variables_to_modify):
@@ -107,15 +111,16 @@ def primary_data_management(putative_predictors, response_variables):
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
     data_with_damage = data_set[
         (data_set['damage_property'] > 0) & (data_set['damage_property'] < 5 * 10 ** 14) & (
-        data_set['short_event'] == True)].copy()
+                data_set['short_event'] == True)].copy()
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
     # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
-    return data_with_damage[putative_predictors+response_variables]
+    return data_with_damage[putative_predictors + response_variables+["event_id"]]
 
 
 if __name__ == "__main__":
     response = retrieve_response_variables()
-    explanatory = retrieve_putative_predictors()
+    explanatory = retrieve_predictors()
     data = primary_data_management(explanatory, response)
+    print(data.head(5))

@@ -4,10 +4,13 @@
       <w>anova</w>
       <w>bivariate</w>
       <w>dateutil</w>
+      <w>graphviz</w>
       <w>matplotlib</w>
       <w>pred</w>
+      <w>pydotplus</w>
       <w>scikit</w>
       <w>seaborn</w>
+      <w>sklearn</w>
       <w>statsmodels</w>
       <w>tukey</w>
     </words>

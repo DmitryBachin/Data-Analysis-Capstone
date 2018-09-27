@@ -55,6 +55,7 @@ def univariate_analysis(data_with_damage, putative_predictors, response_variable
 
 if __name__ == "__main__":
     predictors = retrieve_putative_predictors()
-    data = primary_data_management(predictors)
+    response = retrieve_response_variables()
+    data = primary_data_management(predictors, response)
     response_var = retrieve_response_variables()
     univariate_analysis(data, predictors, response_var)
