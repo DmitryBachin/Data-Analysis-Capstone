@@ -29,13 +29,19 @@ def damage_property(row):  # creating the variable damage in int format to avoid
 
 
 def damage_property_lg(row):
-    element = row["damage_property"]
+    element = float(row["damage_property"])
     if element == 0:
         return 0
     elif element == numpy.nan or element is None:
         return None
     else:
         return log(element, 10)
+
+
+def damage_property_cat(row):
+    median = 3.69
+    element = float(row["damage_property_lg"])
+    return 1 if element >= median else 0
 
 
 def short_event(row):
@@ -47,20 +53,20 @@ def short_event(row):
 def month_name(row):
     element = row['month_name']
     month_dict = {
-        "April": "04.",
-        "August": "08.",
-        "December": "12.",
-        "February": "02.",
-        "January": "01.",
-        "July": "07.",
-        "June": "06.",
-        "March": "03.",
-        "May": "05.",
-        "November": "11.",
-        "October": "10.",
-        "September": "09."
+        "April": "04",
+        "August": "08",
+        "December": "12",
+        "February": "02",
+        "January": "01",
+        "July": "07",
+        "June": "06",
+        "March": "03",
+        "May": "05",
+        "November": "11",
+        "October": "10",
+        "September": "09"
     }
-    return month_dict.get(element, '') + element
+    return month_dict.get(element, '') + '_' + element
 
 
 def month_name_num(row):
@@ -80,11 +86,6 @@ def month_name_num(row):
         "September": 9
     }
     return month_dict.get(element, 0)
-
-
-def cz_type_num(row):
-    element = row["cz_type"]
-    return {'C': 0, 'Z': 1, 'M': 2}.get(element)
 
 
 def modify_data_set(data_set, variables_to_modify):
@@ -116,11 +117,11 @@ def primary_data_management(putative_predictors, response_variables):
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
     # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
-    return data_with_damage[putative_predictors + response_variables+["event_id"]]
+    return data_with_damage[putative_predictors + response_variables]
 
 
 if __name__ == "__main__":
     response = retrieve_response_variables()
-    explanatory = retrieve_predictors()
+    explanatory = retrieve_predictors() + retrieve_non_binary_cat_predictors()
     data = primary_data_management(explanatory, response)
     print(data.head(5))

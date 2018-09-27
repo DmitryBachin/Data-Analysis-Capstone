@@ -1,8 +1,7 @@
-# PUTATIVE_PREDICTORS = ["event_type", "month_name_num", "state"]  # the first set of putative predictors
-PUTATIVE_PREDICTORS = ["cz_type_num"]  # the first set of putative predictors
-VARIABLES_TO_MODIFY = ["damage_property", "month_name_num", "short_event", "damage_property_lg", "cz_type_num"]
-RESPONSE_VARIABLES = ["damage_property_lg"]
-NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name_num", "state_fips"]
+PUTATIVE_PREDICTORS = []  # the first set of putative predictors
+VARIABLES_TO_MODIFY = ["damage_property", "month_name", "short_event", "damage_property_lg", "damage_property_cat"]
+RESPONSE_VARIABLES = ["damage_property_cat"]
+NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name", "state"]
 
 
 # the functions are written in case if the variables name will be needed to modify somehow

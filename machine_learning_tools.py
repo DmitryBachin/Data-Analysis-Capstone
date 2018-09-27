@@ -32,11 +32,11 @@ def one_hot_encoding(data_set, variable):
     return df
 
 
-def recode_categoricals(data_set, variables):
+def recode_categorical_variables(data_set, variables):
     data_to_modify = data_set[variables].copy()
     vectors = [one_hot_encoding(data_to_modify, variable) for variable in data_to_modify.columns.values]
-    modified_data = pd.concat(vectors + [data_set.copy()], axis=1)
-    return modified_data, modified_data.columns.values
+    modified_data = pd.concat(vectors, axis=1)
+    return modified_data
 
 
 def retrieve_clean_data(uncleaned_data, variables=None):
@@ -57,13 +57,15 @@ def decision_tree(pred_train, pred_test, tar_train, tar_test):
 
 
 def machine_learning_general(data_sub_set, targets, predictors, categorical):
+    print("=============Machine Learning tools==============================================")
     data_sub_set = retrieve_clean_data(data_sub_set, targets + predictors + categorical)  # dropping values
-
+    cat_predictors = recode_categorical_variables(data_sub_set, categorical)
     for target in targets:
-        pred_train, pred_test, tar_train, tar_test = train_test_split(data_sub_set[predictors + categorical],
+        pred_train, pred_test, tar_train, tar_test = train_test_split(cat_predictors,
                                                                       data_sub_set[target],
                                                                       test_size=.3)
-
+        print
+        decision_tree(pred_train, pred_test, tar_train, tar_test)
 
 if __name__ == "__main__":
     response = retrieve_response_variables()
