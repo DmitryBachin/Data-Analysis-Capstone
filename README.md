@@ -4,4 +4,4 @@ The code is written for the final project by Dmitry Bachin (dmitrybachin.com)
 The course is organized by Wesleyan University (USA) through Courseta.org
 
 **Machine learning**
-TO run machine 
+TO run vi
