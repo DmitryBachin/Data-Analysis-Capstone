@@ -53,7 +53,7 @@ def bivariate_analysis(data_set, explanatory_variables, response_variables):
 
 
 if __name__ == "__main__":
-    predictors = retrieve_putative_predictors()
-    data = primary_data_management(predictors)
+    predictors = retrieve_non_binary_cat_predictors()
     response_var = retrieve_response_variables()
+    data = primary_data_management(predictors, response_var)
     bivariate_analysis(data, predictors, response_var)

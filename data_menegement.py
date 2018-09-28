@@ -5,8 +5,9 @@ from datetime import datetime, timedelta
 from math import log
 
 
-def damage_property(row):  # creating the variable damage in int format to avoid 10K 12M 2B etc
-    element = row['damage_property']
+def damage_property(row,
+                    variable="damage_property"):  # creating the variable damage in int format to avoid 10K 12M 2B etc
+    element = row[variable]
     multiplier = {
         'K': 10 ** 3,  # for the format like 3.6K
         'M': 10 ** 6,  # for the format like 15M
@@ -26,6 +27,10 @@ def damage_property(row):  # creating the variable damage in int format to avoid
     else:
         # if the value is not str, it means that damage was not evaluated properly and cannot be considered
         return None
+
+
+def damage_crops(row):
+    return damage_property(row, "damage_crops")
 
 
 def damage_property_lg(row):
@@ -69,6 +74,63 @@ def month_name(row):
     return month_dict.get(element, '') + '_' + element
 
 
+def climate_region(row):
+    # based on https://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-regions.php
+    element = row["state"]
+    state_to_regions = {'Alabama': 'Southeast',
+                        'Alaska': 'Upper_Midwest',
+                        'Arizona': 'Southwest',
+                        'Arkansas': 'South',
+                        'California': 'West',
+                        'Colorado': 'Southwest',
+                        'Connecticut': 'Northeast',
+                        'Delaware': 'Northeast',
+                        'Florida': 'Southeast',
+                        'Georgia': 'Southeast',
+                        'Idaho': 'Northwest',
+                        'Illinois': 'Central',
+                        'Indiana': 'Central',
+                        'Iowa': 'Upper_Midwest',
+                        'Kansas': 'South',
+                        'Kentucky': 'Central',
+                        'Louisiana': 'South',
+                        'Maine': 'Northeast',
+                        'Maryland': 'Northeast',
+                        'Massachusetts': 'Northeast',
+                        'Michigan': 'Upper_Midwest',
+                        'Minnesota': 'Upper_Midwest',
+                        'Mississippi': 'South',
+                        'Missouri': 'Central',
+                        'Montana': 'West_North_Central',
+                        'Nebraska': 'West_North_Central',
+                        'Nevada': 'West',
+                        'New Hampshire': 'Northeast',
+                        'New Jersey': 'Northeast',
+                        'New Mexico': 'Southwest',
+                        'New York': 'Northeast',
+                        'North Dakota': 'West_North_Central',
+                        'North Carolina': 'Southeast',
+                        'Ohio': 'Central',
+                        'Oklahoma': 'South',
+                        'Oregon': 'Northwest',
+                        'Pennsylvania': 'Northeast',
+                        'Rhode Island': 'Northeast',
+                        'South': 'South',
+                        'South Dakota': 'West_North_Central',
+                        'South Carolina': 'Southeast',
+                        'Tennessee': 'Central',
+                        'Texas': 'South',
+                        'Utah': 'Southwest',
+                        'Vermont': 'Northeast',
+                        'Virginia': 'Southeast',
+                        'Washington': 'Northwest',
+                        'West Virginia': 'Central',
+                        'Wisconsin': 'Upper_Midwest',
+                        'Wyoming': 'West_North_Central',
+                        'District Of Columbia': "Northeast"}
+    return state_to_regions.get(element.title(), "Other")
+
+
 def month_name_num(row):
     element = row['month_name']
     month_dict = {
@@ -110,14 +172,12 @@ def primary_data_management(putative_predictors, response_variables):
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
 
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-    data_with_damage = data_set[
-        (data_set['damage_property'] > 0) & (data_set['damage_property'] < 5 * 10 ** 14) & (
-                data_set['short_event'] == True)].copy()
+
     # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
     # data_with_damage = data_set[
     #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
     # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
-    return data_with_damage[putative_predictors + response_variables]
+    return data_set[putative_predictors + response_variables]
 
 
 if __name__ == "__main__":
