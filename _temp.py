@@ -11,6 +11,7 @@ import sklearn
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from itertools import combinations, permutations
 from tabulate import tabulate
+import seaborn
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -23,23 +24,15 @@ import pprint
 
 os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin'
 
+def post_hoc_anova_to_dict(df):
+    comparison_dict = {}
+    for i in range(len(df)):
+        print(df["group1"][i])
+        print(df["group2"][i])
+        print(df["meandiff"][i])
+        comparison_dict[df["group1"][i], df["group2"][i]] = df["meandiff"][i]
+    return comparison_dict
 
-plt.rcdefaults()
-fig, ax = plt.subplots()
 
-# Example data
-people = ('Tom', 'Dick', 'Harry', 'Slim', 'Jim')
-y_pos = np.arange(len(people))
-print(y_pos)
-performance = 3 + 10 * np.random.rand(len(people))
-error = np.random.rand(len(people))
-
-ax.barh(y_pos, performance, xerr=error, align='center',
-        color='green', ecolor='black')
-ax.set_yticks(y_pos)
-ax.set_yticklabels(people)
-ax.invert_yaxis()  # labels read top-to-bottom
-ax.set_xlabel('Performance')
-ax.set_title('How fast do you want to go today?')
-
-plt.show()
+p = pprint.PrettyPrinter(indent=4).pprint
+p(post_hoc_anova_to_dict(data))

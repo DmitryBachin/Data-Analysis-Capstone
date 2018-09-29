@@ -2,7 +2,7 @@ RESPONSE_VARIABLES_CAT = ["property_damaged"]
 RESPONSE_VARIABLES_Q = ["damage_property_lg"]
 
 VARIABLES_TO_MODIFY = ["damage_property", "month_name", "event_duration", "damage_property_lg", "climate_region",
-                       "property_damaged"]
+                       "property_damaged", "event_duration_lg"]
 
 QUANTATIVE_PREDICTORS = ["event_duration_lg"]  # the first set of putative predictors
 MACHINE_LEARNING_TARGETS = []

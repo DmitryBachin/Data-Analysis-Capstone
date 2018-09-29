@@ -12,20 +12,11 @@ import os
 import numpy as np
 
 
-def cat_bar_chart(e_var, r_var, data_set):
-    seaborn.factorplot(y=e_var, x=r_var, data=data_set, kind="bar", ci=None)
+def bar_chart(e_var, r_var, data_set):
+    seaborn.catplot(x=r_var, y=e_var, orient='h', data=data_set, kind="bar")
     plt.xlabel(r_var)
     plt.ylabel(e_var)
     plt.show()
-
-
-def q_bar_chart(e_var, r_var, data_set):
-    plt.rcdefaults()
-    fig, ax = plt.subplots()
-    y_pos = np.arange(len(data_set[e_var].unique()))
-    ax.barh(y_pos, data_set[r_var], align='center', color = 'green')
-
-    return
 
 
 def scatter_plot(e_var, r_var, data_set):
@@ -55,6 +46,7 @@ def post_hoc_tukey(data_set, e_var, r_var):
 
 def comparison_dict_to_table(comparison_dict, e_var, r_var, method=''):
     categories = set([i for i, _ in comparison_dict] + [j for _, j in comparison_dict])
+    categories = sorted(categories)
     table = [['*'] + list(categories)]
     for i in categories:
         table.append([i])
@@ -91,8 +83,8 @@ def post_hoc_chi(data_set, e_var, r_var):
 
 def post_hoc_anova_to_dict(df):
     comparison_dict = {}
-    for i in range(len(df)):
-        comparison_dict[df["group1"][i], df["group2"][i]] = df["meandiff"][i]
+    for _, row in df.iterrows():
+        comparison_dict[row["group1"], row["group2"]] = str(row["meandiff"])
     return comparison_dict
 
 
@@ -109,7 +101,7 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
         for e_var in e_cat_variables:
             print("===================================================================================================")
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. ANOVA")
-            q_bar_chart(e_var, r_var, data_set)
+            bar_chart(e_var, r_var, data_set)
             model_fit = analysis_of_variance(e_var, r_var, data_set)
             summary = model_fit.summary()
             print(summary)
@@ -132,7 +124,7 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
         for e_var in e_cat_variables:
             print("===================================================================================================")
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. Chi-square")
-            cat_bar_chart(e_var, r_var, data_set)
+            bar_chart(e_var, r_var, data_set)
             result = chi_square(e_var, r_var, data_set)
             print("chi-square value, p-value")
             print(result[:2])
@@ -148,5 +140,5 @@ if __name__ == "__main__":
     q_response = retrieve_q_response_variables()
     # data = primary_data_management(cat_predictors, cat_response_var)
     # bivariate_analysis(data, [], cat_predictors, [], cat_response_var)
-    data = primary_data_management(cat_predictors, cat_response_var, """(data_set["damage_property"] > 0)""")
+    data = primary_data_management(cat_predictors+q_predictors, q_response, """(data_set["damage_property"] > 0)""")
     bivariate_analysis(data, q_predictors, cat_predictors, q_response, [])

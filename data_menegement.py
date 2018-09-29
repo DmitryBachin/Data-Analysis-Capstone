@@ -29,20 +29,19 @@ def damage_property(row,
         return np.nan
 
 
-def damage_property_lg(row):
-    element = float(row["damage_property"])
+def log_count(element):
     if element in (0, np.nan):
         return np.nan
     else:
         return log(element, 10)
+
+
+def damage_property_lg(row):
+    return log_count(float(row["damage_property"]))
 
 
 def event_duration_lg(row):
-    element = float(row["event_duration"])
-    if element in (0, np.nan):
-        return np.nan
-    else:
-        return log(element, 10)
+    return log_count(float(row["event_duration"]))
 
 
 def property_damaged(row):
@@ -51,6 +50,7 @@ def property_damaged(row):
         return 1 if element > 0 else 0
     else:
         return np.nan
+
 
 def event_duration(row):
     begin = datetime.strptime(row["begin_date_time"], "%d%b%y:%H:%M:%S")
@@ -166,7 +166,8 @@ def modify_data_set(data_set, variables_to_modify):
     return data_set
 
 
-def primary_data_management(putative_predictors, response_variables, condition="""(data_set["damage_property"] >= 0)"""):
+def primary_data_management(putative_predictors, response_variables,
+                            condition="""(data_set["damage_property"] >= 0)"""):
     try:
         # taking the data from the file
         data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
@@ -185,7 +186,8 @@ def primary_data_management(putative_predictors, response_variables, condition="
 
 
 if __name__ == "__main__":
-    response = retrieve_cat_response_variables()
+    response = retrieve_q_response_variables()
     explanatory = retrieve_quantitative_predictors() + retrieve_non_binary_cat_predictors()
-    data = primary_data_management(explanatory, response)
-    print(len(data))
+    data = primary_data_management(explanatory, response, """(data_set["damage_property"] > 0)""")
+    c = data.groupby("damage_property_lg").size()
+    print(c)
