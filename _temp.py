@@ -10,14 +10,20 @@ from sklearn.model_selection import train_test_split
 import sklearn
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 
-
-
-
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
-
 data = pd.read_csv('data_related/_test.csv', low_memory=False)
 
-new_data, new_cat_var = recode_categoricals(data, ["MONTH"])
-print(new_cat_var)
-print(new_data)
+
+from sklearn import tree
+from sklearn.datasets import load_iris
+import os
+import pprint
+
+os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin'
+
+a =data["MONTH"].unique()
+print(type(a))
+for i in a:
+    print(type(i))
+    print(i)

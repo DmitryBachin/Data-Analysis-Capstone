@@ -107,6 +107,7 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
         pred_train, pred_test, tar_train, tar_test = train_test_split(cat_predictors,
                                                                       data_sub_set[target],
                                                                       test_size=.3)
+        print(type(pred_train))
         print(f"The size of the training set is {pred_train.shape[0]}")
         print(f"The size of the test set is {pred_test.shape[0]}")
         #decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
@@ -114,8 +115,8 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
         # TODO: add k-means function
 
 if __name__ == "__main__":
-    response = retrieve_response_variables()
-    explanatory = retrieve_predictors()
+    response = retrieve_cat_response_variables()
+    explanatory = retrieve_quantitative_predictors()
     non_binary_categorical = retrieve_non_binary_cat_predictors()
     data = primary_data_management(explanatory + non_binary_categorical, response)
     machine_learning_general(data, response, explanatory, non_binary_categorical)

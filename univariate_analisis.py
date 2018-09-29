@@ -4,11 +4,11 @@ import seaborn
 import matplotlib.pyplot as plt
 
 
-def output_distribution(data_set, used_variables):  # showing the distribution of the data set by used variables
+def output_distribution(data_set, categorical):  # showing the distribution of the data set by used variables
     sample_volume = len(data_set)
     print('The sample volume is %i' % sample_volume)  # printing the sample volume
     print('')
-    for variable in used_variables:
+    for variable in categorical:
         print("")
         print(f"The {variable} distribution of the damage cost")
         c = data_set.groupby(variable).size()
@@ -42,20 +42,24 @@ def description(variables, data_set):
         print(data_set[variable].describe())
 
 
-def univariate_analysis(data_with_damage, putative_predictors, response_variables):
-    output_distribution(data_with_damage, putative_predictors)  # showing the distribution in textual format
+def univariate_analysis(data_with_damage, categorical, quantitative, response_variables):
+    putative_predictors = categorical + quantitative
+    output_distribution(data_with_damage, categorical)  # showing the distribution in textual format
     # histogram(putative_predictors, data_with_damage)
-    description(putative_predictors+response_variables, data_with_damage)
-    for variable in response_variables:
+    description(categorical + quantitative+response_variables, data_with_damage)
+    for variable in response_variables+quantitative:
         plt.boxplot(x=data_with_damage[variable])
+        plt.title(f"The {variable} box plot")
         plt.show()
         plt.hist(x=data_with_damage[variable])
+        plt.title(f"The {variable} histogram")
         plt.show()
 
 
 if __name__ == "__main__":
-    predictors = retrieve_predictors() + retrieve_non_binary_cat_predictors()
-    response = retrieve_response_variables()
-    data = primary_data_management(predictors, response)
-    response_var = retrieve_response_variables()
-    univariate_analysis(data, predictors, response_var)
+    q_predictors = retrieve_quantitative_predictors()
+    cat_predictors = retrieve_non_binary_cat_predictors()
+    response = retrieve_cat_response_variables()
+    data = primary_data_management(q_predictors+cat_predictors, response)
+    response_var = retrieve_cat_response_variables()
+    univariate_analysis(data, cat_predictors, q_predictors, response_var)

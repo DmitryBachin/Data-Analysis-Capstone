@@ -1,64 +1,40 @@
-PUTATIVE_PREDICTORS = []  # the first set of putative predictors
-VARIABLES_TO_MODIFY = ["damage_property", "month_name", "short_event", "damage_property_lg", "climate_region",
-                       "damage_crops"]
-RESPONSE_VARIABLES = ["damage_property_lg", "injuries_direct", "injuries_indirect", "deaths_direct", "deaths_indirect",
-                      "damage_crops"]
-NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name", "climate_region"]
+RESPONSE_VARIABLES_CAT = ["property_damaged"]
+RESPONSE_VARIABLES_Q = ["damage_property_lg"]
+
+VARIABLES_TO_MODIFY = ["damage_property", "month_name", "event_duration", "damage_property_lg", "climate_region",
+                       "property_damaged"]
+
+QUANTATIVE_PREDICTORS = ["event_duration_lg"]  # the first set of putative predictors
+MACHINE_LEARNING_TARGETS = []
+BINARY_CATEGORICAL_PREDICTORS = []
+NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name", "climate_region", "cz_type", "event_type"]
 
 
 # the functions are written in case if the variables name will be needed to modify somehow
 
-def retrieve_predictors():
-    return PUTATIVE_PREDICTORS[:]
+def retrieve_quantitative_predictors():
+    return QUANTATIVE_PREDICTORS[:]
 
 
 def retrieve_non_binary_cat_predictors():
     return NON_BINARY_CATEGORICAL_PREDICTORS[:]
 
 
+def retrieve_binary_cat_predictors():
+    return BINARY_CATEGORICAL_PREDICTORS[:]
+
+
 def retrieve_variables_to_modify():
     return VARIABLES_TO_MODIFY[:]
 
 
-def retrieve_response_variables():
-    return RESPONSE_VARIABLES[:]
+def retrieve_cat_response_variables():
+    return RESPONSE_VARIABLES_CAT[:]
 
 
-regions = {'Central': ['Illinois',
-                       'Indiana',
-                       'Kentucky',
-                       'Missouri',
-                       'Ohio',
-                       'Tennessee',
-                       'West Virginia'],
-           'Upper_Midwest/East North Central': ['Iowa', 'Michigan', 'Minnesota', 'Wisconsin', 'Alaska'],
-           'Northeast': ['Connecticut',
-                         'Delaware',
-                         'Maine',
-                         'Maryland',
-                         'Massachusetts',
-                         'New Hampshire',
-                         'New Jersey',
-                         'New York',
-                         'Pennsylvania',
-                         'Rhode Island',
-                         'Vermont'],
-           'Northwest': ['Idaho', 'Oregon', 'Washington'],
-           'South': ['South',
-                     'Arkansas',
-                     'Kansas',
-                     'Louisiana',
-                     'Mississippi',
-                     'Oklahoma',
-                     'Texas'],
-           'Southeast': ['Alabama',
-                         'Florida',
-                         'Georgia',
-                         'North_Carolina',
-                         'South_Carolina',
-                         'Virginia'],
-           'Southwest': ['Arizona', 'Colorado', 'New Mexico', 'Utah'],
-           'West': ["California", "Nevada"],
-           'Northern Rockies and Plains/West_North_Central': ['Montana', 'Nebraska', 'North Dakota', 'South Dakota',
-                                                              'Wyoming'],
-           'Other': []}
+def retrieve_q_response_variables():
+    return RESPONSE_VARIABLES_Q[:]
+
+
+def retrieve_machine_targets():
+    return MACHINE_LEARNING_TARGETS[:]

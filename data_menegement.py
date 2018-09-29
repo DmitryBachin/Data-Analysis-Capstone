@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import pandas
 from variables import *
 from datetime import datetime, timedelta
@@ -23,36 +23,45 @@ def damage_property(row,
             except ValueError:
                 # to check if there are some other format of damage property price is missed
                 print(f'The value {element} was not transformed properly')
-                return None
+                return np.nan
     else:
         # if the value is not str, it means that damage was not evaluated properly and cannot be considered
-        return None
-
-
-def damage_crops(row):
-    return damage_property(row, "damage_crops")
+        return np.nan
 
 
 def damage_property_lg(row):
     element = float(row["damage_property"])
-    if element == 0:
-        return 0
-    elif element == numpy.nan or element is None:
-        return None
+    if element in (0, np.nan):
+        return np.nan
     else:
         return log(element, 10)
 
 
-def damage_property_cat(row):
-    median = 3.69
-    element = float(row["damage_property_lg"])
-    return 1 if element >= median else 0
+def event_duration_lg(row):
+    element = float(row["event_duration"])
+    if element in (0, np.nan):
+        return np.nan
+    else:
+        return log(element, 10)
 
 
-def short_event(row):
+def property_damaged(row):
+    element = row["damage_property"]
+    if element != np.nan:
+        return 1 if element > 0 else 0
+    else:
+        return np.nan
+
+def event_duration(row):
     begin = datetime.strptime(row["begin_date_time"], "%d%b%y:%H:%M:%S")
     end = datetime.strptime(row["end_date_time"], "%d%b%y:%H:%M:%S")
-    return (end - begin) < timedelta(1)
+    t = (end - begin).total_seconds() / 3600
+    return t
+
+
+def event_category(row):
+    element = row["event_type"]
+    return element
 
 
 def month_name(row):
@@ -157,7 +166,7 @@ def modify_data_set(data_set, variables_to_modify):
     return data_set
 
 
-def primary_data_management(putative_predictors, response_variables):
+def primary_data_management(putative_predictors, response_variables, condition="""(data_set["damage_property"] >= 0)"""):
     try:
         # taking the data from the file
         data_set = pandas.read_csv('data_related/storm_event_data.csv', low_memory=False)
@@ -170,18 +179,13 @@ def primary_data_management(putative_predictors, response_variables):
     modifiable_variables = retrieve_variables_to_modify()
 
     data_set = modify_data_set(data_set, modifiable_variables)  # performing necessary modifications of the data set
-
+    data_with_damage = data_set[(data_set["damage_property"] >= 0) & eval(condition)]
     # making a subset where we consider only weather events for which damage is evaluated and bigger than zero
-
-    # low_border, high_border = restrictions_to_sample(data_set, "damage_property")
-    # data_with_damage = data_set[
-    #     (data_set['damage_property'] >= low_border) & (data_set["damage_property"] <= high_border)].copy()
-    # return data_with_damage[list(set(modifiable_variables+putative_predictors))]
-    return data_set[putative_predictors + response_variables]
+    return data_with_damage[putative_predictors + response_variables]
 
 
 if __name__ == "__main__":
-    response = retrieve_response_variables()
-    explanatory = retrieve_predictors() + retrieve_non_binary_cat_predictors()
+    response = retrieve_cat_response_variables()
+    explanatory = retrieve_quantitative_predictors() + retrieve_non_binary_cat_predictors()
     data = primary_data_management(explanatory, response)
-    print(data.head(5))
+    print(len(data))
