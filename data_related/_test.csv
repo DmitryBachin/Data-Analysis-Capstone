@@ -1,7 +1,7 @@
-MONTH,Week_day,Daytime
-Jan,Monday,Morning
-Jan,Tuesday,Afternoon
-Jan,Sunday,Evening
-Feb,Saturday,Night
-Mar,Saturday,Afternoon
-May,Wednesday,Night
+group1,group2,meandiff,
+One,Four,5,
+Two,One,3,
+Three,Seven,10,
+Four,Five,9,
+Two,Four,6,
+One,Three,4,
