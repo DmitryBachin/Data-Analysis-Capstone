@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/machine_learning_tools.py" line="110" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/machine_learning_tools.py" line="109" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list id="c161c341-7607-4a2e-a80c-5181b204337a" name="added counter of the most successful results of post hoc test" comment="" />
     <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,23 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bivariate_analisis.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bivariate_analisis.py">
+      <file leaf-file-name="machine_learning_tools.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/machine_learning_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="835">
-              <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="563">
+              <caret line="94" column="75" lean-forward="true" selection-start-line="94" selection-start-column="75" selection-end-line="94" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -72,7 +62,6 @@
         <option value="$PROJECT_DIR$/separate_steps/bivariate_analisis.py" />
         <option value="$PROJECT_DIR$/separate_steps/data_menegement.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/machine_learning_tools.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/data_related/_test.csv" />
         <option value="$PROJECT_DIR$/univariate_analisis.py" />
@@ -81,12 +70,14 @@
         <option value="$PROJECT_DIR$/variables.py" />
         <option value="$PROJECT_DIR$/bivariate_analisis.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/temp.py" />
+        <option value="$PROJECT_DIR$/machine_learning_tools.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1909" />
-    <option name="width" value="1940" />
+    <option name="x" value="1401" />
+    <option name="width" value="2450" />
     <option name="height" value="2111" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -110,11 +101,6 @@
               <item name="Data-Analysis-Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data-Analysis-Capstone" type="462c0819:PsiDirectoryNode" />
               <item name="data_related" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Data-Analysis-Capstone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data-Analysis-Capstone" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -153,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bivariate_analisis">
+  <component name="RunManager" selected="Python.machine_learning_tools">
     <configuration name="_temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Data-Analysis-Capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,24 +176,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="data_menegement" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Data-Analysis-Capstone" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_menegement.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="machine_learning_tools" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Data-Analysis-Capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -221,6 +189,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning_tools.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Data-Analysis-Capstone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -246,18 +232,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.bivariate_analisis" />
-      <item itemvalue="Python.data_menegement" />
       <item itemvalue="Python.univariate_analisis" />
-      <item itemvalue="Python.machine_learning_tools" />
       <item itemvalue="Python._temp" />
+      <item itemvalue="Python.temp" />
+      <item itemvalue="Python.machine_learning_tools" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.machine_learning_tools" />
+        <item itemvalue="Python.temp" />
         <item itemvalue="Python.bivariate_analisis" />
         <item itemvalue="Python._temp" />
         <item itemvalue="Python.univariate_analisis" />
-        <item itemvalue="Python.data_menegement" />
-        <item itemvalue="Python.machine_learning_tools" />
       </list>
     </recent_temporary>
   </component>
@@ -392,17 +378,32 @@
       <option name="project" value="LOCAL" />
       <updated>1538310190649</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="check">
+      <created>1538310548273</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1538310548273</updated>
+    </task>
+    <task id="LOCAL-00019" summary="git ignore is modified">
+      <created>1538310683501</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1538310683501</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
+    <frame x="934" y="0" width="1633" height="1407" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="1700" y="539" width="293" height="600" id="Project" order="2" side_tool="true" visible="true" weight="0.15843949" />
+      <window_info content_ui="combo" x="1700" y="539" width="293" height="600" id="Project" order="2" side_tool="true" visible="true" weight="0.12468672" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.14165391" side_tool="true" weight="0.4288725" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49540582" weight="0.32498044" />
-      <window_info anchor="bottom" x="0" y="30" width="1279" height="960" id="Run" order="2" sideWeight="0.6312411" type="WINDOWED" weight="0.39431205" />
+      <window_info active="true" anchor="bottom" x="0" y="30" width="1279" height="960" id="Run" order="2" sideWeight="0.6312411" type="WINDOWED" visible="true" weight="0.39431205" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32967892" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.8583461" weight="0.16288175" />
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -483,7 +484,9 @@
     <MESSAGE value="variables are explained shortly" />
     <MESSAGE value="data management is commented" />
     <MESSAGE value="bivariate analysis is finished and fully commented" />
-    <option name="LAST_COMMIT_MESSAGE" value="bivariate analysis is finished and fully commented" />
+    <MESSAGE value="check" />
+    <MESSAGE value="git ignore is modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="git ignore is modified" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -728,24 +731,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_related/_test.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/pandas/core/indexing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="787">
           <caret line="1355" column="9" lean-forward="true" selection-start-line="1355" selection-start-column="9" selection-end-line="1355" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="86" column="42" lean-forward="true" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -805,16 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_menegement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="848">
-          <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/univariate_analisis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="865">
@@ -835,9 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/variables.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -845,20 +821,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bivariate_analisis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="835">
-          <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
+        <state relative-caret-position="382">
+          <caret line="135" column="59" lean-forward="true" selection-start-line="135" selection-start-column="59" selection-end-line="135" selection-end-column="83" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/temp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="527">
+          <caret line="31" column="10" lean-forward="true" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_related/_test.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_menegement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="848">
+          <caret line="149" column="4" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="94" column="75" lean-forward="true" selection-start-line="94" selection-start-column="75" selection-end-line="94" selection-end-column="75" />
         </state>
       </provider>
     </entry>

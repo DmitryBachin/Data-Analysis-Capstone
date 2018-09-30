@@ -107,16 +107,21 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
         pred_train, pred_test, tar_train, tar_test = train_test_split(cat_predictors,
                                                                       data_sub_set[target],
                                                                       test_size=.3)
-        print(type(pred_train))
         print(f"The size of the training set is {pred_train.shape[0]}")
         print(f"The size of the test set is {pred_test.shape[0]}")
-        #decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
-        lasso_regression(pred_train, pred_test, tar_train, tar_test, cat_predictors)
+        # decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
+        # lasso_regression(pred_train, pred_test, tar_train, tar_test, cat_predictors)
         # TODO: add k-means function
 
+
 if __name__ == "__main__":
-    response = retrieve_cat_response_variables()
-    explanatory = retrieve_quantitative_explanatory_vars()
-    non_binary_categorical = retrieve_cat_explanatory_vars()
-    data = primary_data_management(explanatory + non_binary_categorical, response)
-    machine_learning_general(data, response, explanatory, non_binary_categorical)
+    # taking variables which are appropriate for machine learning
+    target_variables = retrieve_cat_response_variables()
+    quantitative_predictors = retrieve_quantitative_explanatory_vars()
+    categorical_predictors = retrieve_cat_explanatory_vars()
+
+    # for machine learning tools we work only with the "property_damaged" variable because it is binary
+    data = primary_data_management(quantitative_predictors + categorical_predictors, target_variables)
+
+    # performing the machine learning
+    machine_learning_general(data, target_variables, quantitative_predictors, categorical_predictors)
