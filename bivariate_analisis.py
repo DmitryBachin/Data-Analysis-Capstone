@@ -134,9 +134,9 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
 
 
 if __name__ == "__main__":
-    cat_predictors = retrieve_non_binary_cat_predictors()
+    cat_predictors = retrieve_non_binary_cat_explanatory_vars()
     cat_response_var = retrieve_cat_response_variables()
-    q_predictors = retrieve_quantitative_predictors()
+    q_predictors = retrieve_quantitative_explanatory_vars()
     q_response = retrieve_q_response_variables()
     # data = primary_data_management(cat_predictors, cat_response_var)
     # bivariate_analysis(data, [], cat_predictors, [], cat_response_var)

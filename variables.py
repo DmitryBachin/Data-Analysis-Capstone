@@ -12,11 +12,11 @@ NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name", "climate_region", "cz_type", 
 
 # the functions are written in case if the variables name will be needed to modify somehow
 
-def retrieve_quantitative_predictors():
+def retrieve_quantitative_explanatory_vars():
     return QUANTATIVE_PREDICTORS[:]
 
 
-def retrieve_non_binary_cat_predictors():
+def retrieve_non_binary_cat_explanatory_vars():
     return NON_BINARY_CATEGORICAL_PREDICTORS[:]
 
 

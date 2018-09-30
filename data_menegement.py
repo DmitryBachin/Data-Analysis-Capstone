@@ -187,7 +187,7 @@ def primary_data_management(putative_predictors, response_variables,
 
 if __name__ == "__main__":
     response = retrieve_q_response_variables()
-    explanatory = retrieve_quantitative_predictors() + retrieve_non_binary_cat_predictors()
+    explanatory = retrieve_quantitative_explanatory_vars() + retrieve_non_binary_cat_explanatory_vars()
     data = primary_data_management(explanatory, response, """(data_set["damage_property"] > 0)""")
     c = data.groupby("damage_property_lg").size()
     print(c)
