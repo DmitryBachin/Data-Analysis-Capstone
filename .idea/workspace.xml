@@ -4,20 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/machine_learning_tools.py" line="110" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="data management is commented">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/dmitr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/dmitr.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bivariate_analisis.py" beforeDir="false" afterPath="$PROJECT_DIR$/bivariate_analisis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/ANOVA_response_damage_property_lg__explanatory_climate_region.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/ANOVA_response_damage_property_lg__explanatory_climate_region.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_climate_region.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_climate_region.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_cz_type.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_cz_type.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_event_type.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_event_type.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_month_name.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/Chi-Square_response_property_damaged__explanatory_month_name.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/univariate_analisis.py" beforeDir="false" afterPath="$PROJECT_DIR$/univariate_analisis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
-    </list>
     <list id="c161c341-7607-4a2e-a80c-5181b204337a" name="added counter of the most successful results of post hoc test" comment="" />
+    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,14 +17,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bivariate_analisis.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bivariate_analisis.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bivariate_analisis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-219">
-              <caret line="110" column="91" selection-start-line="110" selection-start-column="91" selection-end-line="110" selection-end-column="91" />
+            <state relative-caret-position="835">
+              <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="13" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -79,9 +78,9 @@
         <option value="$PROJECT_DIR$/univariate_analisis.py" />
         <option value="$PROJECT_DIR$/data_menegement.py" />
         <option value="$PROJECT_DIR$/_temp.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/variables.py" />
         <option value="$PROJECT_DIR$/bivariate_analisis.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -386,12 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538301688456</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="bivariate analysis is finished and fully commented">
+      <created>1538310190649</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1538310190649</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" x="1700" y="539" width="293" height="600" id="Project" order="2" side_tool="true" visible="true" weight="0.15843949" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -477,7 +482,8 @@
     <MESSAGE value="univariate analysis is finished, and commented" />
     <MESSAGE value="variables are explained shortly" />
     <MESSAGE value="data management is commented" />
-    <option name="LAST_COMMIT_MESSAGE" value="data management is commented" />
+    <MESSAGE value="bivariate analysis is finished and fully commented" />
+    <option name="LAST_COMMIT_MESSAGE" value="bivariate analysis is finished and fully commented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -832,13 +838,6 @@
     <entry file="file://$PROJECT_DIR$/temp.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/variables.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -848,11 +847,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bivariate_analisis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-219">
-          <caret line="110" column="91" selection-start-line="110" selection-start-column="91" selection-end-line="110" selection-end-column="91" />
+        <state relative-caret-position="835">
+          <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
