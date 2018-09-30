@@ -178,11 +178,11 @@ if __name__ == "__main__":
     quantitative_explanatory_variables = retrieve_quantitative_explanatory_vars()
     quantitative_response_variables = retrieve_q_response_variables()
 
-    # preforming primary data management, adding new variables (more details in variables.py or in the report.pdf)
+    # preforming data management, adding new variables (more details in variables.py or in the report.pdf)
     data = primary_data_management(categorical_explanatory_variables, categorical_response_variables)
     bivariate_analysis(data, [], categorical_explanatory_variables, [], categorical_response_variables)
 
-    # performing univariate analysis with data where property is damage and evaluated clear
+    # performing data management with data where property is damaged and evaluated clear
     data = primary_data_management(categorical_explanatory_variables + quantitative_explanatory_variables,
                                    quantitative_response_variables, """(data_set["damage_property"] > 0)""")
     bivariate_analysis(data, quantitative_explanatory_variables, categorical_explanatory_variables,
