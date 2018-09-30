@@ -43,7 +43,8 @@ To perform the analysis of damage property, multiple regression was performed. T
 **Machine learning**
 The visualisation of decision tree performed by GraphViz. To use it, one needs not only meet the requirements.txt but install GraphViz on computer if it is not done before. Anyway the decision tree can be found in the results folder in the png file.<br>
 To analyze what can be associated with the fact of damage property Random Forest and Decision Tree methods was used.
-The results of Random forest will be shown if one runs the program. 
+To deal with variables with many categories One Hot Encoding was performed.
+The results of Random forest will be shown if one runs the program.
 Because the plot of the number of tree has shown that the model is pretty precise (83-87%) even with one decision tree, the decision tree analyses was performed and the tree was pruned and visualized.
 
  
