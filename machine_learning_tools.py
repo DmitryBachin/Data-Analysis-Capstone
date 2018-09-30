@@ -1,7 +1,6 @@
 from pandas import Series, DataFrame
 import pandas as pd
 import numpy as np
-import matplotlib.pylab as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from variables import *
@@ -110,8 +109,7 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
         print(f"The size of the training set is {pred_train.shape[0]}")
         print(f"The size of the test set is {pred_test.shape[0]}")
         # decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
-        # lasso_regression(pred_train, pred_test, tar_train, tar_test, cat_predictors)
-        # TODO: add k-means function
+        lasso_regression(pred_train, pred_test, tar_train, tar_test, cat_predictors)
 
 
 if __name__ == "__main__":
