@@ -74,7 +74,7 @@ def comparison_dict_to_table(comparison_dict, e_var='', r_var='', method=''):
                 counter[i] -= 1  # subtract one if the categoy is in the pair
             table[-1].append(value)
 
-    csv = ',\n'.join([','.join(line) for line in table])  # creating text for csv file
+    csv = '\n'.join([','.join(line) for line in table])  # creating text for csv file
 
     if not os.path.exists("results"):  # creating the directory if it doesn't exist
         os.makedirs("results")
