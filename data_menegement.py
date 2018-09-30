@@ -87,7 +87,7 @@ def climate_region(row):
     # based on https://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-regions.php
     element = row["state"]
     state_to_regions = {'Alabama': 'Southeast',
-                        'Alaska': 'Upper_Midwest',
+                        'Alaska': 'Alaska',
                         'Arizona': 'Southwest',
                         'Arkansas': 'South',
                         'California': 'West',

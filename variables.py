@@ -1,27 +1,44 @@
-RESPONSE_VARIABLES_CAT = ["property_damaged"]
-RESPONSE_VARIABLES_Q = ["damage_property_lg"]
+RESPONSE_CATEGORICAL_VARIABLES = [
+    "property_damaged"  # whether property was damaged or not
+]
+RESPONSE_QUATITATIVE_VARIABLES = [
+    "damage_property_lg"  # logarithm of the damage property caused by the weather event amount (base 10)
+]
+VARIABLES_TO_MODIFY = [
+    "damage_property",  # the amount of damage property; modified to integers from 30K, 2M, 1B
+    "month_name",  # the month when the event took place; modified to the name with numeric prefix ("01_January")
+    "event_duration",  # the duration of the event in hours; created from begin and end time of the event
+    "damage_property_lg",  # logarithm of the damage property caused by the weather event amount (base 10)
+    "climate_region",  # arranging states by climate region; Alaska is separated from others, DC added to Northeast
+    "property_damaged",  # categorical; 0 if damage_property is 0, 1 if bigger than 0, nan if nan
+    "event_duration_lg"  # logarithm of the event duration with base 10
+]
 
-VARIABLES_TO_MODIFY = ["damage_property", "month_name", "event_duration", "damage_property_lg", "climate_region",
-                       "property_damaged", "event_duration_lg"]
+QUANTITATIVE_EXPLANATORY_VARIABLES = [
+    "event_duration_lg"  # logarithm of the event duration with base 10
+]
+BINARY_CATEGORICAL_EXPLANATORY_VARIABLES = []
 
-QUANTATIVE_PREDICTORS = ["event_duration_lg"]  # the first set of putative predictors
-MACHINE_LEARNING_TARGETS = []
-BINARY_CATEGORICAL_PREDICTORS = []
-NON_BINARY_CATEGORICAL_PREDICTORS = ["month_name", "climate_region", "cz_type", "event_type"]
+NON_BINARY_CATEGORICAL_EXPLANATORY_VARIABLES = [
+    "month_name",
+    "climate_region",
+    "cz_type",
+    "event_type"
+]
 
 
 # the functions are written in case if the variables name will be needed to modify somehow
 
 def retrieve_quantitative_explanatory_vars():
-    return QUANTATIVE_PREDICTORS[:]
+    return QUANTITATIVE_EXPLANATORY_VARIABLES[:]
 
 
 def retrieve_non_binary_cat_explanatory_vars():
-    return NON_BINARY_CATEGORICAL_PREDICTORS[:]
+    return NON_BINARY_CATEGORICAL_EXPLANATORY_VARIABLES[:]
 
 
-def retrieve_binary_cat_predictors():
-    return BINARY_CATEGORICAL_PREDICTORS[:]
+def retrieve_binary_cat_explanatory_variables():
+    return BINARY_CATEGORICAL_EXPLANATORY_VARIABLES[:]
 
 
 def retrieve_variables_to_modify():
@@ -29,12 +46,8 @@ def retrieve_variables_to_modify():
 
 
 def retrieve_cat_response_variables():
-    return RESPONSE_VARIABLES_CAT[:]
+    return RESPONSE_CATEGORICAL_VARIABLES[:]
 
 
 def retrieve_q_response_variables():
-    return RESPONSE_VARIABLES_Q[:]
-
-
-def retrieve_machine_targets():
-    return MACHINE_LEARNING_TARGETS[:]
+    return RESPONSE_QUATITATIVE_VARIABLES[:]
