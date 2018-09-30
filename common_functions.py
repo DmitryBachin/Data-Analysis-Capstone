@@ -1,5 +1,8 @@
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import pandas as pd
+import operator
+from tabulate import tabulate
+
 
 def label_encoding(data_set, variable):  # returns the recoding dictionary
     # doesn't return the array to avoid complication
@@ -9,6 +12,7 @@ def label_encoding(data_set, variable):  # returns the recoding dictionary
 
 
 def one_hot_encoding(data_set, variable):
+    # recode every category as binary variable
     value_map = label_encoding(data_set[[variable]], variable)
     x_0 = data_set[[variable]]
     x_0[variable] = x_0[variable].map(value_map)
@@ -20,3 +24,15 @@ def one_hot_encoding(data_set, variable):
 
     df = pd.DataFrame(x_one_hot, columns=names)
     return df
+
+
+def recode_categorical_variables(data_set, variables):
+    # use one hot encoding to adapt data to machine learning tools
+    data_to_modify = data_set[variables].copy()
+    vectors = [one_hot_encoding(data_to_modify, variable) for variable in data_to_modify.columns.values]
+    modified_data = pd.concat(vectors, axis=1)
+    return modified_data
+
+
+def dict_to_table(result_dict):
+    return tabulate(sorted(result_dict.items(), key=operator.itemgetter(1), reverse=True))

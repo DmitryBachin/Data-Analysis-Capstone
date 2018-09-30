@@ -28,5 +28,3 @@ os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin'
 
 p = pprint.PrettyPrinter(indent=4).pprint
 
-cat = data["group1"].unique()
-print(cat)

@@ -9,8 +9,7 @@ import scipy.stats
 from itertools import combinations
 from tabulate import tabulate
 import os
-import numpy as np
-import operator
+from common_functions import dict_to_table
 
 
 def bar_chart(e_var, r_var, data_set):
@@ -85,7 +84,7 @@ def comparison_dict_to_table(comparison_dict, e_var='', r_var='', method=''):
 
     # creating the result tables to show in the console
     text_table = tabulate(table[1:], headers=table[0]) if len(table) > 0 else ''
-    counter = tabulate(sorted(counter.items(), key=operator.itemgetter(1), reverse=True))
+    counter = dict_to_table(counter)
     return text_table, counter
 
 
