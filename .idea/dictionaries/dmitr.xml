@@ -3,12 +3,14 @@
     <words>
       <w>anova</w>
       <w>bivariate</w>
+      <w>bonferroni</w>
       <w>codebook</w>
       <w>dateutil</w>
       <w>graphviz</w>
       <w>matplotlib</w>
       <w>pred</w>
       <w>pydotplus</w>
+      <w>scatterplot</w>
       <w>scikit</w>
       <w>seaborn</w>
       <w>sklearn</w>

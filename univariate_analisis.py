@@ -59,7 +59,7 @@ def univariate_analysis(data_set, cat_explanatory, q_explanatory, cat_response, 
 
 if __name__ == "__main__":
     # retrieving all variables for the research
-    categorical_explanatory_variable = retrieve_non_binary_cat_explanatory_vars()
+    categorical_explanatory_variable = retrieve_cat_explanatory_vars()
     categorical_response_variables = retrieve_cat_response_variables()
     quantitative_independent_variables = retrieve_quantitative_explanatory_vars()
     quantitative_response_variables = retrieve_q_response_variables()

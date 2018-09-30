@@ -1,3 +1,5 @@
+CRITICAL_VALUE = 0.05
+
 RESPONSE_CATEGORICAL_VARIABLES = [
     "property_damaged"  # whether property was damaged or not
 ]
@@ -17,9 +19,8 @@ VARIABLES_TO_MODIFY = [
 QUANTITATIVE_EXPLANATORY_VARIABLES = [
     "event_duration_lg"  # logarithm of the event duration with base 10
 ]
-BINARY_CATEGORICAL_EXPLANATORY_VARIABLES = []
 
-NON_BINARY_CATEGORICAL_EXPLANATORY_VARIABLES = [
+CATEGORICAL_EXPLANATORY_VARIABLES = [
     "month_name",
     "climate_region",
     "cz_type",
@@ -33,12 +34,8 @@ def retrieve_quantitative_explanatory_vars():
     return QUANTITATIVE_EXPLANATORY_VARIABLES[:]
 
 
-def retrieve_non_binary_cat_explanatory_vars():
-    return NON_BINARY_CATEGORICAL_EXPLANATORY_VARIABLES[:]
-
-
-def retrieve_binary_cat_explanatory_variables():
-    return BINARY_CATEGORICAL_EXPLANATORY_VARIABLES[:]
+def retrieve_cat_explanatory_vars():
+    return CATEGORICAL_EXPLANATORY_VARIABLES[:]
 
 
 def retrieve_variables_to_modify():

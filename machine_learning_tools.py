@@ -117,6 +117,6 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
 if __name__ == "__main__":
     response = retrieve_cat_response_variables()
     explanatory = retrieve_quantitative_explanatory_vars()
-    non_binary_categorical = retrieve_non_binary_cat_explanatory_vars()
+    non_binary_categorical = retrieve_cat_explanatory_vars()
     data = primary_data_management(explanatory + non_binary_categorical, response)
     machine_learning_general(data, response, explanatory, non_binary_categorical)
