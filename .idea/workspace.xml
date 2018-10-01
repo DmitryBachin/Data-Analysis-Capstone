@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list id="c161c341-7607-4a2e-a80c-5181b204337a" name="added counter of the most successful results of post hoc test" comment="" />
-    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="remove">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Data-Analysis-Capstone.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="some testing">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/regression_models.py" afterPath="$PROJECT_DIR$/regression_models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/machine_learning_tools.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="410">
-              <caret line="69" column="28" lean-forward="true" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+              <caret line="69" column="28" lean-forward="false" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -65,8 +62,8 @@
       <file leaf-file-name="regression_models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/regression_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="595">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -492,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538404954961</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="some testing">
+      <created>1538405259882</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1538405259882</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -573,7 +577,8 @@
     <MESSAGE value="regression finished and commented;" />
     <MESSAGE value="removed one hot encoding" />
     <MESSAGE value="commit new git ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit new git ignore" />
+    <MESSAGE value="some testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="some testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -747,7 +752,7 @@
     <entry file="file://$PROJECT_DIR$/machine_learning_tools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
-          <caret line="69" column="28" lean-forward="true" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+          <caret line="69" column="28" lean-forward="false" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
@@ -756,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/regression_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="595">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
