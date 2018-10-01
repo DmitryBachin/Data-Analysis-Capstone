@@ -7,9 +7,11 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
 
-def formula_creation(r_var, e_vars):
+def formula_creation(r_var, q_e_vars, cat_e_vars):
     # creating the formula for ols
-    return f"{r_var} ~ " + " + ".join(e_vars)
+    formula = f"{r_var} ~ " + " + ".join(q_e_vars)
+
+    return formula
 
 
 def regression_modeling(q_explanatory, cat_explanatory, response, data_set):
@@ -18,7 +20,7 @@ def regression_modeling(q_explanatory, cat_explanatory, response, data_set):
         data_set[variable] = data_set[variable] - data_set[variable].mean()
 
     for r_var in response:
-        formula = formula_creation(r_var, explanatory_variables)
+        formula = formula_creation(r_var, q_explanatory, cat_explanatory)
         print(formula)
         regression_model = smf.ols(formula, data=data_set).fit()
         print(regression_model.summary())
