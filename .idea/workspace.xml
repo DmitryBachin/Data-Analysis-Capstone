@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list id="c161c341-7607-4a2e-a80c-5181b204337a" name="added counter of the most successful results of post hoc test" comment="" />
-    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="some testing">
+    <list default="true" id="3ac80f38-2324-4e8b-b9d0-34c0a0053823" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -496,7 +496,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538405259882</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="some testing">
+      <created>1538405332952</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1538405332952</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
