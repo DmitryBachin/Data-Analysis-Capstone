@@ -75,7 +75,7 @@ def month_name(row):  # adding numerical prefix to month names
         "October": "10",
         "September": "09"
     }
-    return month_dict.get(element, '') + '_' + element
+    return month_dict.get(element, '') + '.' + element
 
 
 def climate_region(row):

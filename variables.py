@@ -1,7 +1,7 @@
 CRITICAL_VALUE = 0.05
 
 RESPONSE_CATEGORICAL_VARIABLES = {
-    "property_damaged": "Whether property damage happened or not"  # whether property was damaged or not
+    "property_damaged": "Property damaged(1) or not (0)"  # whether property was damaged or not
 }
 RESPONSE_QUATITATIVE_VARIABLES = {
     "damage_property_lg": "lg(property damage) (lg$)"  # logarithm of the damage property caused by the weather event amount (base 10)
