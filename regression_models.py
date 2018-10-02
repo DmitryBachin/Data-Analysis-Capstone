@@ -30,6 +30,8 @@ def regression_modeling(q_explanatory, cat_explanatory, response, data_set):
 
 
 if __name__ == "__main__":
+    # TODO: be sure that everything is dict now
+    # TODO: rule out “cz_type”
     # retrieve variables for regression
     quantitative_explanatory_variables = retrieve_quantitative_explanatory_vars()
     categorical_explanatory_variables = retrieve_cat_explanatory_vars()

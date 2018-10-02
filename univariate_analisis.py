@@ -17,11 +17,11 @@ def output_distribution(data_set, variable,
     print(pt)
 
 
-def histogram(variable, data_set):
+def histogram(variable, label, data_set):
     # histogram for categorical variables, shows the number of event in each category
     seaborn.set()
     seaborn.countplot(y=variable, data=data_set)
-    plt.ylabel(f"The {variable}")
+    plt.ylabel(label)
     plt.title(f"The number of weather events by {variable}")
     plt.show()
 
@@ -38,7 +38,7 @@ def univariate_analysis(data_set, cat_explanatory, q_explanatory, cat_response, 
     sample_volume = len(data_set)
     print('The sample volume is %i' % sample_volume)  # printing the sample volume
     # performs univariate analysis of all variables
-    all_variables = cat_explanatory[:] + q_explanatory[:] + cat_response[:] + q_response[:]
+    all_variables = {**cat_explanatory, **q_explanatory, **cat_response, **q_response}
 
     for variable in all_variables:
         print('=======================================================================================================')
@@ -53,7 +53,7 @@ def univariate_analysis(data_set, cat_explanatory, q_explanatory, cat_response, 
             plt.show()
         else:
             output_distribution(data_set, variable, sample_volume)  # showing the distribution in textual format
-            histogram(variable, data_set) # showing histogram for categorical variables
+            histogram(variable, all_variables.get(variable, ''), data_set) # showing histogram for categorical variables
 
 
 
@@ -65,18 +65,18 @@ if __name__ == "__main__":
     quantitative_response_variables = retrieve_q_response_variables()
 
     # preforming primary data management, adding new variables (more details in variables.py or in the report.pdf)
-    data = primary_data_management(categorical_explanatory_variable[:] + quantitative_independent_variables[:],
-                                   categorical_response_variables[:])
+    data = primary_data_management({**categorical_explanatory_variable, **quantitative_independent_variables},
+                                   categorical_response_variables.copy())
 
     # performing univariate analysis for  all data where damage_property is not nan
-    univariate_analysis(data, categorical_explanatory_variable[:], quantitative_independent_variables[:],
-                        categorical_response_variables[:], [])
+    univariate_analysis(data, categorical_explanatory_variable.copy(), quantitative_independent_variables.copy(),
+                        categorical_response_variables.copy(), {})
 
     # performing the data management to work only with data where property is damage and evaluated clear
-    data = primary_data_management(categorical_explanatory_variable[:] + quantitative_independent_variables[:],
-                                   quantitative_response_variables[:],
+    data = primary_data_management({**categorical_explanatory_variable, **quantitative_independent_variables},
+                                   quantitative_response_variables.copy(),
                                    """(data_set["damage_property"] > 0)""")
 
     # performing univariate analysis with data where property is damage and evaluated clear
-    univariate_analysis(data, categorical_explanatory_variable[:], quantitative_independent_variables[:], [],
-                        quantitative_response_variables[:])
+    univariate_analysis(data, categorical_explanatory_variable.copy(), quantitative_independent_variables.copy(), {},
+                        quantitative_response_variables.copy())

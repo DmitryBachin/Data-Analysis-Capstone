@@ -1,11 +1,11 @@
 CRITICAL_VALUE = 0.05
 
-RESPONSE_CATEGORICAL_VARIABLES = [
-    "property_damaged"  # whether property was damaged or not
-]
-RESPONSE_QUATITATIVE_VARIABLES = [
-    "damage_property_lg"  # logarithm of the damage property caused by the weather event amount (base 10)
-]
+RESPONSE_CATEGORICAL_VARIABLES = {
+    "property_damaged": "Whether property damage happened or not"  # whether property was damaged or not
+}
+RESPONSE_QUATITATIVE_VARIABLES = {
+    "damage_property_lg": "lg(property damage) (lg$)"  # logarithm of the damage property caused by the weather event amount (base 10)
+}
 VARIABLES_TO_MODIFY = [
     "damage_property",  # the amount of damage property; modified to integers from 30K, 2M, 1B
     "month_name",  # the month when the event took place; modified to the name with numeric prefix ("01_January")
@@ -16,35 +16,35 @@ VARIABLES_TO_MODIFY = [
     "event_duration_lg"  # logarithm of the event duration with base 10
 ]
 
-QUANTITATIVE_EXPLANATORY_VARIABLES = [
-    "event_duration_lg"  # logarithm of the event duration with base 10
-]
+QUANTITATIVE_EXPLANATORY_VARIABLES = {
+    "event_duration_lg": "event duration(hours)"  # logarithm of the event duration with base 10
+}
 
-CATEGORICAL_EXPLANATORY_VARIABLES = [
-    "month_name",
-    "climate_region",
-    "cz_type",
-    "event_type"
-]
+CATEGORICAL_EXPLANATORY_VARIABLES = {
+    "month_name": "month",
+    "climate_region": "The climate region",
+    "cz_type": "County(C) or zone(Z)",
+    "event_type": "The type of the weather event"
+}
 
 
 # the functions are written in case if the variables name will be needed to modify somehow
 
 def retrieve_quantitative_explanatory_vars():
-    return QUANTITATIVE_EXPLANATORY_VARIABLES[:]
+    return QUANTITATIVE_EXPLANATORY_VARIABLES.copy()
 
 
 def retrieve_cat_explanatory_vars():
-    return CATEGORICAL_EXPLANATORY_VARIABLES[:]
+    return CATEGORICAL_EXPLANATORY_VARIABLES.copy()
 
 
 def retrieve_variables_to_modify():
-    return VARIABLES_TO_MODIFY[:]
+    return VARIABLES_TO_MODIFY.copy()
 
 
 def retrieve_cat_response_variables():
-    return RESPONSE_CATEGORICAL_VARIABLES[:]
+    return RESPONSE_CATEGORICAL_VARIABLES.copy()
 
 
 def retrieve_q_response_variables():
-    return RESPONSE_QUATITATIVE_VARIABLES[:]
+    return RESPONSE_QUATITATIVE_VARIABLES.copy()

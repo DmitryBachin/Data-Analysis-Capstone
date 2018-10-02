@@ -171,6 +171,7 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
 
 
 if __name__ == "__main__":
+    # TODO: be sure that everything is dict now
     # retrieving all variables for the research
     categorical_explanatory_variables = retrieve_cat_explanatory_vars()
     categorical_response_variables = retrieve_cat_response_variables()

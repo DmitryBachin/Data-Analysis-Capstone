@@ -99,6 +99,9 @@ def machine_learning_general(data_sub_set, targets, predictors, categorical):
 
 
 if __name__ == "__main__":
+    # TODO: be sure that everythin is dict now
+    # TODO: rule out “cz_type”
+    # TODO: check that duration is consideredd
     # taking variables which are appropriate for machine learning
     target_variables = retrieve_cat_response_variables()
     quantitative_predictors = retrieve_quantitative_explanatory_vars()
