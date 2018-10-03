@@ -11,10 +11,14 @@ from tabulate import tabulate
 import os
 from common_functions import dict_to_table
 
+CLIMATE_REGION_CATEGORY_ORDER = ['Alaska', 'Central', 'Northeast', 'Northwest', 'South', 'Southeast', 'Southwest',
+                                 'Upper_Midwest', 'West', 'West_North_Central', 'Other']
+
 
 def bar_chart(e_var, e_label, r_var, r_label, data_set):
+    order = None if e_var != "climate_region" else CLIMATE_REGION_CATEGORY_ORDER
     # creates bar chart with confidence intervals
-    seaborn.catplot(x=r_var, y=e_var, orient='h', data=data_set, kind="bar")
+    seaborn.catplot(x=r_var, y=e_var, orient='h', order=order, data=data_set, kind="bar")
     plt.xlabel(r_label)
     plt.ylabel(e_label)
     plt.show()
