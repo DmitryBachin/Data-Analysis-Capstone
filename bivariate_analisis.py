@@ -35,8 +35,10 @@ def scatter_plot(e_var, e_label, r_var, r_label, data_set):
 def chi_square(e_var, r_var, data_set):
     # performs chi-square test
     tab = pd.crosstab(data_set[r_var], data_set[e_var])
+    column_sum = tab.sum(axis=0)
+    percentage_tab = 100 * tab / column_sum
     test_result = scipy.stats.chi2_contingency(tab)
-    return test_result
+    return test_result, percentage_tab
 
 
 def analysis_of_variance(e_var, r_var, data_set):
@@ -103,7 +105,8 @@ def post_hoc_chi(data_set, e_var, r_var):
         # leaving only two categories
         df = data_set[(data_set[e_var] == e_pair[0]) | (data_set[e_var] == e_pair[1])].copy()
         # performing chi_square again
-        pair_result = chi_square(e_var, r_var, df)
+        pair_result, _  = chi_square(e_var, r_var, df)
+
         if pair_result[1] < CRITICAL_VALUE / len(pairs):
             # if we reject null hypothesis, add it to comparison dict with p_value
             comparison_dict[e_pair] = str(pair_result[1])
@@ -135,6 +138,7 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. ANOVA")
             # showing result as a bar chart
             bar_chart(e_var, e_cat_variables.get(e_var, e_var), r_var, r_q_variables.get(r_var, r_var), data_set)
+            print(data_set[[r_var, e_var]].groupby(e_var).mean())
             model_fit = analysis_of_variance(e_var, r_var, data_set)  # testing the model
             summary = model_fit.summary()  # printing the summary
             print(summary)
@@ -167,7 +171,8 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. Chi-square")
             # showing result as a bar chart
             bar_chart(e_var, e_cat_variables.get(e_var, e_var), r_var, r_cat_variables.get(r_var, r_var), data_set)
-            result = chi_square(e_var, r_var, data_set)  # making chi-square test
+            result, tab = chi_square(e_var, r_var, data_set)  # making chi-square test
+            print(tab)
             print("chi-square value, p-value")
             print(result[:2])
             if len(result) >= 2 and result[1] < CRITICAL_VALUE:  # if p-value lower than critical value...
