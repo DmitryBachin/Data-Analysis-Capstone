@@ -36,3 +36,25 @@ def recode_categorical_variables(data_set, variables):
 
 def dict_to_table(result_dict):
     return tabulate(sorted(result_dict.items(), key=operator.itemgetter(1), reverse=True))
+
+
+def parse_feature_importance_table(table):
+    replace_map = [
+        ("'", ""),
+        ("\n\n ", "\n"),
+        ("  ", "*"),
+        ("* ", "*"),
+        ("event_", "event "),
+        ("climate_", "climate "),
+        ("West_North_Central", "West North Central"),
+        ("Upper_Midwest", "Upper Midwest"),
+        ("_lg", " lg"),
+        ("_", ": ")
+    ]
+    for old, new in replace_map:
+        table = table.replace(old, new)
+
+    while "**" in table:
+        table = table.replace("**", "*")
+
+    return table
