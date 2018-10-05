@@ -39,8 +39,14 @@ def print_dict(non_pretty_dict):
 def decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=False):
     # the function which creates regular decision tree or performs random forest
     if not random_forest:
-        classifier = DecisionTreeClassifier(criterion="gini", splitter='random', max_leaf_nodes=15, min_samples_leaf=5,
-                                            max_depth=5, random_state=123)
+        classifier = DecisionTreeClassifier(criterion="gini",
+                                            splitter='random',
+                                            min_samples_leaf=1,
+                                            min_samples_split=2,
+                                            max_depth=50,
+                                            max_leaf_nodes=None,
+                                            random_state=123,
+                                            min_impurity_decrease=0.001)
     else:
         classifier = RandomForestClassifier(n_estimators=25, random_state=123)
     classifier = classifier.fit(pred_train, tar_train)
@@ -71,17 +77,25 @@ def decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=Fals
 
         # check if the model is successful if we try different number of trees
         number_of_trees = 25
-        trees = range(number_of_trees + 1)
-        accuracy = np.zeros(number_of_trees + 1)
+        trees = range(number_of_trees)
+        accuracy = np.zeros(number_of_trees)
         for i in trees:
-            classifier = RandomForestClassifier(n_estimators=i + 1, random_state=123)
+            classifier = RandomForestClassifier(n_estimators=i+1, random_state=123)
             classifier = classifier.fit(pred_train, tar_train)
             predictions = classifier.predict(pred_test)
             accuracy[i] = sklearn.metrics.accuracy_score(tar_test, predictions)
+        print(f"The accuracy score values on the plot are between {min(accuracy)} and {max(accuracy)}")
         plt.cla()
         plt.plot(trees, accuracy)  # making the plot with the result
         plt.xlabel("The number of trees")
+        plt.xticks([i+1 for i in trees])
         plt.ylabel("The accuracy score")
+        font = {'family': 'normal',
+                'weight': 'bold',
+                'size': 36}
+
+        plt.rc('font', **font)
+
         plt.show()
 
 
@@ -106,14 +120,11 @@ def machine_learning_general(data_sub_set, targets, q_predictors, cat_predictors
                                                                       test_size=.3)
         print(f"The size of the training set is {pred_train.shape[0]}")
         print(f"The size of the test set is {pred_test.shape[0]}")
-        decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
+        # decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
         decision_tree(pred_train, pred_test, tar_train, tar_test)
 
 
 if __name__ == "__main__":
-    # TODO: be sure that everythin is dict now
-    # TODO: rule out “cz_type”
-    # TODO: check that duration is consideredd
     # taking variables which are appropriate for machine learning
     target_variables = retrieve_cat_response_variables()
     quantitative_predictors = retrieve_quantitative_explanatory_vars()
