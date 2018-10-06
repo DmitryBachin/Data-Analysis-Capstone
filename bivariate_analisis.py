@@ -11,28 +11,34 @@ from tabulate import tabulate
 import os
 from common_functions import dict_to_table
 
+CLIMATE_REGION_CATEGORY_ORDER = ['Alaska', 'Central', 'Northeast', 'Northwest', 'South', 'Southeast', 'Southwest',
+                                 'Upper_Midwest', 'West', 'West_North_Central', 'Other']
 
-def bar_chart(e_var, r_var, data_set):
+
+def bar_chart(e_var, e_label, r_var, r_label, data_set):
+    order = None if e_var != "climate_region" else CLIMATE_REGION_CATEGORY_ORDER
     # creates bar chart with confidence intervals
-    seaborn.catplot(x=r_var, y=e_var, orient='h', data=data_set, kind="bar")
-    plt.xlabel(r_var)
-    plt.ylabel(e_var)
+    seaborn.catplot(x=r_var, y=e_var, orient='h', order=order, data=data_set, kind="bar")
+    plt.xlabel(r_label)
+    plt.ylabel(e_label)
     plt.show()
 
 
-def scatter_plot(e_var, r_var, data_set):
+def scatter_plot(e_var, e_label, r_var, r_label, data_set):
     # creates scatterplot
     seaborn.regplot(x=e_var, y=r_var, data=data_set)
-    plt.xlabel(e_var)
-    plt.ylabel(r_var)
+    plt.xlabel(e_label)
+    plt.ylabel(r_label)
     plt.show()
 
 
 def chi_square(e_var, r_var, data_set):
     # performs chi-square test
     tab = pd.crosstab(data_set[r_var], data_set[e_var])
+    column_sum = tab.sum(axis=0)
+    percentage_tab = 100 * tab / column_sum
     test_result = scipy.stats.chi2_contingency(tab)
-    return test_result
+    return test_result, percentage_tab
 
 
 def analysis_of_variance(e_var, r_var, data_set):
@@ -59,14 +65,15 @@ def comparison_dict_to_table(comparison_dict, e_var='', r_var='', method=''):
     counter = {key: len(categories) - 1 for key in categories}
     counter["MAXIMUM NUMBER OF DIFFERENCES"] = len(categories) - 1
 
-    table = [['*'] + list(categories)] # creating the header line of the future table
+    table = [['*'] + list(categories)]  # creating the header line of the future table
     for i in categories:
         table.append([i])  # adding the first element
         for j in categories:
             if (i, j) in comparison_dict:
                 value = comparison_dict[i, j]  # adding p-value or mean difference (depending of the test)
             elif (j, i) in comparison_dict:
-                value = comparison_dict[j, i]  # adding p-value or mean difference (depending of the test)
+                # adding p-value or mean difference (depending of the test)
+                value = comparison_dict[j, i] if method != "ANOVA" else str(-1 * float(comparison_dict[j, i]))
             elif i == j:
                 value = '*'  # marking the same categories
             else:
@@ -80,7 +87,7 @@ def comparison_dict_to_table(comparison_dict, e_var='', r_var='', method=''):
         os.makedirs("results")
 
     with open(f"results/{method}_response_{r_var}__explanatory_{e_var}.csv", 'w') as f:
-        f.write(csv) # writing csv into a file
+        f.write(csv)  # writing csv into a file
 
     # creating the result tables to show in the console
     text_table = tabulate(table[1:], headers=table[0]) if len(table) > 0 else ''
@@ -98,7 +105,8 @@ def post_hoc_chi(data_set, e_var, r_var):
         # leaving only two categories
         df = data_set[(data_set[e_var] == e_pair[0]) | (data_set[e_var] == e_pair[1])].copy()
         # performing chi_square again
-        pair_result = chi_square(e_var, r_var, df)
+        pair_result, _  = chi_square(e_var, r_var, df)
+
         if pair_result[1] < CRITICAL_VALUE / len(pairs):
             # if we reject null hypothesis, add it to comparison dict with p_value
             comparison_dict[e_pair] = str(pair_result[1])
@@ -128,7 +136,9 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
         for e_var in e_cat_variables:  # dealing with categorical explanatory variables
             print("===================================================================================================")
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. ANOVA")
-            bar_chart(e_var, r_var, data_set)  # showing result as a bar chart
+            # showing result as a bar chart
+            bar_chart(e_var, e_cat_variables.get(e_var, e_var), r_var, r_q_variables.get(r_var, r_var), data_set)
+            print(data_set[[r_var, e_var]].groupby(e_var).mean())
             model_fit = analysis_of_variance(e_var, r_var, data_set)  # testing the model
             summary = model_fit.summary()  # printing the summary
             print(summary)
@@ -145,9 +155,10 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
         for e_var in e_q_variables:  # dealing with quantitative explanatory variables
             print("===================================================================================================")
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. Pearson correlation")
-            scatter_plot(e_var, r_var, data_set)  # printing the scatterplot
+            scatter_plot(e_var, e_cat_variables.get(e_var, e_var), r_var, r_cat_variables.get(r_var, r_var),
+                         data_set)  # printing the scatterplot
             print("R, p-value")
-            print(scipy.stats.pearsonr(data_set[e_var], data_set[r_var])) # performing Person correlation
+            print(scipy.stats.pearsonr(data_set[e_var], data_set[r_var]))  # performing Person correlation
 
     if r_cat_variables and e_q_variables:  # if response is categorical and explanatory is quantitative
         # we need to transform explanatory variables to categorical
@@ -158,8 +169,10 @@ def bivariate_analysis(data_set, e_q_variables, e_cat_variables, r_q_variables, 
         for e_var in e_cat_variables:  # dealing with categorical explanatory variables
             print("===================================================================================================")
             print(f"The response variable is {r_var}. The explanatory variable is {e_var}. Chi-square")
-            bar_chart(e_var, r_var, data_set)  # showing result as a bar chart
-            result = chi_square(e_var, r_var, data_set)  # making chi-square test
+            # showing result as a bar chart
+            bar_chart(e_var, e_cat_variables.get(e_var, e_var), r_var, r_cat_variables.get(r_var, r_var), data_set)
+            result, tab = chi_square(e_var, r_var, data_set)  # making chi-square test
+            print(tab)
             print("chi-square value, p-value")
             print(result[:2])
             if len(result) >= 2 and result[1] < CRITICAL_VALUE:  # if p-value lower than critical value...
@@ -179,10 +192,10 @@ if __name__ == "__main__":
 
     # preforming data management, adding new variables (more details in variables.py or in the report.pdf)
     data = primary_data_management(categorical_explanatory_variables, categorical_response_variables)
-    bivariate_analysis(data, [], categorical_explanatory_variables, [], categorical_response_variables)
+    bivariate_analysis(data, {}, categorical_explanatory_variables, {}, categorical_response_variables)
 
     # performing data management with data where property is damaged and evaluated clear
-    data = primary_data_management(categorical_explanatory_variables + quantitative_explanatory_variables,
+    data = primary_data_management({**categorical_explanatory_variables, **quantitative_explanatory_variables},
                                    quantitative_response_variables, """(data_set["damage_property"] > 0)""")
     bivariate_analysis(data, quantitative_explanatory_variables, categorical_explanatory_variables,
-                       quantitative_response_variables, [])
+                       quantitative_response_variables, {})

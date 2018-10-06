@@ -75,7 +75,7 @@ def month_name(row):  # adding numerical prefix to month names
         "October": "10",
         "September": "09"
     }
-    return month_dict.get(element, '') + '_' + element
+    return month_dict.get(element, '') + '.' + element
 
 
 def climate_region(row):
@@ -173,7 +173,7 @@ def primary_data_management(explanatory_variables, response_variables,
     # the condition can be changed to come other to change the sample
     data_with_damage = data_set[(data_set["damage_property"] >= 0) & eval(condition)]
     # because the dataset is huge, to save time, I am leaving only variables with which I work with
-    return data_with_damage[explanatory_variables + response_variables]
+    return data_with_damage[list(explanatory_variables) + list(response_variables)]
 
 
 if __name__ == "__main__":
