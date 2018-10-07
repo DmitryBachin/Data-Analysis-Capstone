@@ -120,7 +120,7 @@ def machine_learning_general(data_sub_set, targets, q_predictors, cat_predictors
                                                                       test_size=.3)
         print(f"The size of the training set is {pred_train.shape[0]}")
         print(f"The size of the test set is {pred_test.shape[0]}")
-        # decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
+        decision_tree(pred_train, pred_test, tar_train, tar_test, random_forest=True)
         decision_tree(pred_train, pred_test, tar_train, tar_test)
 
 
