@@ -1,4 +1,4 @@
-# The analysis of weather events.
+# The association of property damage caused by the event with its duration, type, climate region and month.
 The capstone from the course "Data Analysis and Interpretation" provided by Wesleyan University
 The code is written for the final project by Dmitry Bachin
 The course is organized by Wesleyan University (USA) through Courseta.org<br>
