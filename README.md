@@ -6,14 +6,14 @@ The detailed final report can be found in [full_report.pdf](https://github.com/D
 
 ##Variables
 The file variables.py contain variables which are used in the analysis. 
-More details about the variables and the data set itself can be found in the files:<br>
-data_related/Storm Event Data Codebook.pdf<br>
-data_related/NWS Storm Event Data Documentation.pdf
+More details about the variables and the data set itself can be found in the files:
+* [The Dataset Codebook](https://github.com/DmitryBachin/Data-Analysis-Capstone/blob/master/data_related/Storm%20Event%20Data%20Codebook.pdf)<br>
+* [The Dataset Documentation](https://github.com/DmitryBachin/Data-Analysis-Capstone/blob/master/data_related/NWS%20Storm%20Event%20Data%20Documentation.pdf)
 
 ##Data management
 The property damage was chosen as a response variable. Because most values of this variables are zeros, the research was divided into two parts:
-1) Create a binary categorical variable which means whether some property was damaged(1) or not(0). To perform the analysis univariate, bivariate and machine learning approaches were used. From the sample were excluded all observations where the property damage was not estimated(missing variables)
-2) Create a damage property variable and exclude all data where the property damage was not estimated properly or equals zero. Because of high positive skewness, all quantitative values were logarithmic with a base 10. The analysis univariate, bivariate and regression approaches were performed with the sample.  <br>
+1. Create a binary categorical variable which means whether some property was damaged(1) or not(0). To perform the analysis univariate, bivariate and machine learning approaches were used. From the sample were excluded all observations where the property damage was not estimated(missing variables)
+2. Create a damage property variable and exclude all data where the property damage was not estimated properly or equals zero. Because of high positive skewness, all quantitative values were logarithmic with a base 10. The analysis univariate, bivariate and regression approaches were performed with the sample.  <br>
 
 Only the first research will be presented in the Data Analysis course as a final project. In the [full_report.pdf](https://github.com/DmitryBachin/Data-Analysis-Capstone/blob/master/full_report.pdf) file, the whole report is presented. 
 
