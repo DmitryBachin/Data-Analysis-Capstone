@@ -2,7 +2,7 @@
 The capstone from the course "Data Analysis and Interpretation" provided by Wesleyan University
 The code is written for the final project by Dmitry Bachin
 The course is organized by Wesleyan University (USA) through Courseta.org<br>
-The detailed final report can be found in final-report.pdf in the root directory.
+The detailed final report can be found in [full_report.pdf](https://github.com/DmitryBachin/Data-Analysis-Capstone/blob/master/full_report.pdf).
 
 ##Variables
 The file variables.py contain variables which are used in the analysis. 
@@ -15,11 +15,11 @@ The property damage was chosen as a response variable. Because most values of th
 1) Create a binary categorical variable which means whether some property was damaged(1) or not(0). To perform the analysis univariate, bivariate and machine learning approaches were used. From the sample were excluded all observations where the property damage was not estimated(missing variables)
 2) Create a damage property variable and exclude all data where the property damage was not estimated properly or equals zero. Because of high positive skewness, all quantitative values were logarithmic with a base 10. The analysis univariate, bivariate and regression approaches were performed with the sample.  <br>
 
-The states were united in climate categories based on the map: 
-![Image](https://www.ncdc.noaa.gov/monitoring-references/maps/images/us-climate-regions.gif "icon")
-The source: https://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-regions.php
-The dictrict of Columbia was added to Northeast climate region. Alaska was puted separately because all other places which are not from the map above, were ocean/see related and mostly located in equatorial climate. 
+Only the first research will be presented in the Data Analysis course as a final project. In the [full_report.pdf](https://github.com/DmitryBachin/Data-Analysis-Capstone/blob/master/full_report.pdf) file, the whole report is presented. 
 
+The states were united in climate categories based on [the map](https://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-regions.php): 
+![Image](https://www.ncdc.noaa.gov/monitoring-references/maps/images/us-climate-regions.gif "icon")<br>
+The district of Columbia was added to the Northeast climate region. Alaska was put separately because all other places which are not from the map above, were ocean/see related and mostly located in an equatorial climate. 
 Explanatory variables included the type of the event, the event type designator,  the month when it was observed,  the climate region where it happened and the event duration.
 
 
